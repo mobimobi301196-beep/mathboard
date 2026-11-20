@@ -1,0 +1,19 @@
+# Fly.io. Замените имя приложения на своё (должно быть уникальным).
+app = "mathboard-CHANGEME"
+primary_region = "waw"   # Варшава — близко к Украине
+
+[env]
+  PORT = "8080"
+  LESSON = "monomials.mth"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "off"     # состояние доски живёт в памяти — сервер не должен засыпать
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1

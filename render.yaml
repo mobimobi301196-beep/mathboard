@@ -1,0 +1,11 @@
+# Вариант для Render.com (бесплатный план засыпает после 15 мин простоя — первый заход будет ~1 мин).
+services:
+  - type: web
+    name: mathboard
+    runtime: docker
+    plan: free
+    envVars:
+      - key: TEACHER_KEY
+        generateValue: true     # ключ учителя Render сгенерирует сам; посмотреть: Dashboard -> Environment
+      - key: LESSON
+        value: monomials.mth

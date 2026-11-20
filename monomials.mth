@@ -1,0 +1,277 @@
+# УРОК «ОДНОЧЛЕНЫ», 7 класс. Пробел = следующий шаг. Центр экрана = 0,0; поле: x от -8 до 8, y от -4.5 до 4.5.
+# Позиция текста и формул — их ЦЕНТР по вертикали; align=center центрирует и по горизонтали.
+title "Одночлены"
+
+# 1 ── Заставка
+text "ОДНОЧЛЕНЫ" 0,1.0 size=104 color=yellow align=center time=1.4
+line -2.7,0.15 2.7,0.15 color=blue width=4 time=0.8
+text "Алгебра · 7 класс" 0,-0.5 size=38 color=gray align=center
+wait 0.4
+tex "3x^2y\qquad -5ab^3\qquad 7\qquad x" 0,-2.3 size=54 color=blue align=center
+pause
+
+# 2 ── Загадка
+clear
+heading "Что общего у этих выражений?"
+box -7.2,-0.2 7.2,2.8 color=blue
+tex "5" -5.6,1.3 size=84 align=center time=0.7
+tex "x" -2.8,1.3 size=84 align=center time=0.7
+tex "3x^2" 0,1.3 size=84 align=center time=0.7
+tex "-2ab^3" 2.9,1.3 size=84 align=center time=0.7
+tex "\frac{1}{2}m^2n" 5.7,1.3 size=84 align=center time=0.7
+wait 1.2
+text "Между частями нет «+» и «−» — только умножение" 0,-1.5 size=34 align=center
+text "Такие выражения называют одночленами" 0,-2.6 size=40 color=yellow align=center
+pause
+
+# 3 ── Определение
+clear
+heading "Определение"
+box -7.2,1.0 7.2,2.8 color=yellow
+text "Одночлен — произведение чисел, переменных и их степеней" 0,2.25 size=34 align=center
+text "Число и переменная тоже считаются одночленами" 0,1.45 size=30 color=blue align=center
+box -7.2,-3.5 -0.3,0.5 color=white
+box 0.3,-3.5 7.2,0.5 color=red
+text "Одночлены" -3.75,0.05 size=34 color=white align=center
+text "Не одночлены" 3.75,0.05 size=34 color=red align=center
+tex "7" -3.75,-0.7 size=44 color=white align=center time=0.5
+tex "x" -3.75,-1.4 size=44 color=white align=center time=0.5
+tex "3x^2y" -3.75,-2.1 size=44 color=white align=center time=0.5
+tex "-0.5ab^3" -3.75,-2.9 size=44 color=white align=center time=0.5
+wait 0.4
+tex "x+1" 3.75,-0.7 size=44 color=red align=center time=0.5
+tex "3a-b" 3.75,-1.4 size=44 color=red align=center time=0.5
+tex "5x^2+1" 3.75,-2.1 size=44 color=red align=center time=0.5
+tex "\frac{2}{x}" 3.75,-2.9 size=44 color=red align=center time=0.5
+text "не одночлен: есть сложение, вычитание или деление на букву" 0,-4.0 size=24 color=gray align=center
+pause
+
+# 4 ── Стандартный вид
+clear
+heading "Стандартный вид"
+text "1. запишем" -7.2,2.3 size=26 color=gray
+tex "2\cdot x\cdot 3\cdot x\cdot y" 0,2.3 size=56 align=center
+arrow 0,1.6 0,1.0 color=gray time=0.5
+text "2. сгруппируем" -7.2,0.3 size=26 color=gray
+tex "(2\cdot3)\cdot(x\cdot x)\cdot y" 0,0.3 size=56 color=blue align=center
+arrow 0,-0.4 0,-1.0 color=gray time=0.5
+text "3. запишем степени" -7.2,-1.9 size=26 color=gray
+box -2.4,-2.6 2.4,-1.2 color=yellow
+tex "6x^2y" 0,-1.9 size=76 color=yellow align=center
+text "число — вперёд · буквы — по алфавиту · повторы — в степень" 0,-3.7 size=28 color=gray align=center
+pause
+
+# 5 ── Коэффициент и степень
+clear
+heading "Коэффициент и степень"
+tex "-4a^2b^3" -3.6,2.2 size=84 color=yellow align=center
+text "коэффициент: −4" 1.2,2.6 size=32 color=orange
+text "степень: 2 + 3 = 5" 1.2,1.8 size=32 color=teal
+text "одночлен" -4.6,0.6 size=28 color=gray align=center
+text "коэффициент" 0.2,0.6 size=28 color=orange align=center
+text "степень" 4.8,0.6 size=28 color=teal align=center
+line -7.2,0.15 7.2,0.15 color=gray width=2 time=0.4
+tex "7x" -4.6,-0.55 size=42 align=center
+& tex "7" 0.2,-0.55 size=42 color=orange align=center
+& tex "1" 4.8,-0.55 size=42 color=teal align=center
+tex "-x^2y" -4.6,-1.45 size=42 align=center
+& tex "-1" 0.2,-1.45 size=42 color=orange align=center
+& tex "3" 4.8,-1.45 size=42 color=teal align=center
+tex "\frac{2}{3}a^3" -4.6,-2.45 size=42 align=center
+& tex "\frac{2}{3}" 0.2,-2.45 size=42 color=orange align=center
+& tex "3" 4.8,-2.45 size=42 color=teal align=center
+tex "5" -4.6,-3.4 size=42 align=center
+& tex "5" 0.2,-3.4 size=42 color=orange align=center
+& tex "0" 4.8,-3.4 size=42 color=teal align=center
+pause
+
+# 6 ── Подобные
+clear
+heading "Подобные одночлены"
+box -7.2,0.2 7.2,2.8 color=teal
+text "подобные: одинаковая буквенная часть" 0,2.4 size=28 color=teal align=center
+tex "3x^2y" -4.8,1.2 size=60 color=teal align=center
+& tex "-5x^2y" 0,1.2 size=60 color=teal align=center
+& tex "\frac{1}{2}x^2y" 4.8,1.2 size=60 color=teal align=center
+wait 0.5
+box -7.2,-3.6 7.2,-0.2 color=red
+text "не подобные: буквы или степени разные" 0,-0.65 size=28 color=red align=center
+tex "3x^2y" -4.8,-1.9 size=60 color=teal align=center
+& tex "3xy^2" 0,-1.9 size=60 color=orange align=center
+& tex "3x^2" 4.8,-1.9 size=60 color=purple align=center
+text "коэффициенты роли не играют" 0,-3.1 size=26 color=gray align=center
+pause
+
+# 7 ── Сложение подобных
+clear
+heading "Сложение подобных"
+tex "3x^2y+5x^2y" -1.6,2.4 size=58 color=teal align=center
+text "Каждое x²y — как одно яблоко. Сложим кучки:" 0,1.5 size=28 color=gray align=center
+point -5.0,0.5 color=teal id=a1 time=0.25
+point -4.3,0.5 color=teal id=a2 time=0.25
+point -3.6,0.5 color=teal id=a3 time=0.25
+point 0.2,0.5 color=blue id=b1 time=0.25
+point 0.9,0.5 color=blue id=b2 time=0.25
+point 1.6,0.5 color=blue id=b3 time=0.25
+point 2.3,0.5 color=blue id=b4 time=0.25
+point 3.0,0.5 color=blue id=b5 time=0.25
+wait 0.8
+move b1 -2.9,0.5 time=1.3
+& move b2 -2.2,0.5 time=1.3
+& move b3 -1.5,0.5 time=1.3
+& move b4 -0.8,0.5 time=1.3
+& move b5 -0.1,0.5 time=1.3
+wait 0.2
+box -5.5,-0.2 0.4,1.2 color=teal
+tex "=\;8x^2y" 3.4,2.4 size=58 color=yellow align=center
+tex "3x^2y+5x^2y=(3+5)x^2y=8x^2y" 0,-1.4 size=50 align=center
+text "коэффициенты складываем, буквенная часть не меняется" 0,-2.7 size=30 color=gray align=center
+pause
+
+# 8 ── Умножение
+clear
+heading "Умножение одночленов"
+tex "(2x^2y)\cdot(3xy^3)" 0,2.3 size=58 align=center
+tex "=(2\cdot3)\cdot(x^2\cdot x)\cdot(y\cdot y^3)" 0,1.0 size=46 color=blue align=center
+tex "=6\,x^{2+1}\,y^{1+3}" 0,-0.2 size=46 color=blue align=center
+box -3.2,-2.7 3.2,-1.2 color=yellow
+tex "=6x^3y^4" 0,-1.95 size=72 color=yellow align=center
+text "коэффициенты перемножаем, показатели одинаковых букв складываем" 0,-3.7 size=28 color=gray align=center
+pause
+
+# 9 ── Степень
+clear
+heading "Возведение в степень"
+tex "(-2a^2b)^3" 0,2.3 size=58 align=center
+tex "=(-2)^3\cdot(a^2)^3\cdot b^3" 0,1.0 size=46 color=blue align=center
+tex "=-8\cdot a^{2\cdot3}\cdot b^3" 0,-0.2 size=46 color=blue align=center
+box -3.2,-2.7 3.2,-1.2 color=yellow
+tex "=-8a^6b^3" 0,-1.95 size=72 color=yellow align=center
+text "каждый множитель — в степень; степень в степени — показатели умножаем" 0,-3.4 size=26 color=gray align=center
+text "минус в нечётной степени остаётся, в чётной — исчезает" 0,-4.0 size=26 color=orange align=center
+pause
+
+# 10 ── Геометрия
+clear
+heading "Одночлены в геометрии"
+line -6.6,-1.7 -2.7,-1.7 color=white time=0.6
+& line -2.7,-1.7 -2.7,0.9 color=white time=0.6
+& line -2.7,0.9 -6.6,0.9 color=white time=0.6
+& line -6.6,0.9 -6.6,-1.7 color=white time=0.6
+line -5.3,-1.7 -5.3,0.9 color=blue width=2 time=0.4
+& line -4.0,-1.7 -4.0,0.9 color=blue width=2 time=0.4
+& line -6.6,-0.4 -2.7,-0.4 color=blue width=2 time=0.4
+tex "3a" -4.65,-2.4 size=40 color=yellow align=center
+tex "2a" -7.3,-0.4 size=40 color=yellow align=center
+tex "a^2" -5.95,0.25 size=28 color=teal align=center time=0.3
+& tex "a^2" -4.65,0.25 size=28 color=teal align=center time=0.3
+& tex "a^2" -3.35,0.25 size=28 color=teal align=center time=0.3
+& tex "a^2" -5.95,-1.05 size=28 color=teal align=center time=0.3
+& tex "a^2" -4.65,-1.05 size=28 color=teal align=center time=0.3
+& tex "a^2" -3.35,-1.05 size=28 color=teal align=center time=0.3
+wait 0.6
+box -1.0,-1.8 7.2,1.4 color=yellow
+tex "S=3a\cdot2a=6a^2" 3.1,0.5 size=52 color=yellow align=center
+text "ровно 6 клеток по a²" 3.1,-0.7 size=30 color=white align=center
+pause
+
+# 11 ── Графики y = a·x^n
+clear
+axes -4,4 -3,9 id=ax
+tex "y=ax^n" 4.6,8.2 size=40 color=gray id=l0
+tex "y=x" 4.6,6.6 size=60 color=yellow id=l1
+plot "x" color=blue id=f time=1.8
+pause
+
+fadeout l1
+& tex "y=x^2" 4.6,6.6 size=60 color=yellow id=l2
+& morph f "x^2" time=1.6
+text "чётная степень:" 4.6,5.2 size=28 color=teal id=t1
+text "симметрия по оси y" 4.6,4.6 size=28 color=teal id=t2
+pause
+
+fadeout l2
+& fadeout t1
+& fadeout t2
+& tex "y=x^3" 4.6,6.6 size=60 color=yellow id=l3
+& morph f "x^3" time=1.6
+text "нечётная степень:" 4.6,5.2 size=28 color=orange id=t3
+text "симметрия относительно" 4.6,4.6 size=28 color=orange id=t4
+text "начала координат" 4.6,4.0 size=28 color=orange id=t5
+pause
+
+fadeout l3
+& fadeout t3
+& fadeout t4
+& fadeout t5
+& tex "y=2x^2" 4.6,6.6 size=60 color=yellow id=l4
+& morph f "2*x^2" time=1.5
+text "a > 1: график уже" 4.6,5.2 size=28 color=white id=t6
+pause
+
+fadeout l4
+& fadeout t6
+& tex "y=-x^2" 4.6,6.6 size=60 color=yellow id=l5
+& morph f "-x^2" time=1.8
+text "a < 0: ветви вниз" 4.6,5.2 size=28 color=red
+pause
+
+# 12 ── Частые ошибки
+clear
+view -8,8 -4.5,4.5
+heading "Частые ошибки"
+box -7.2,-2.5 -0.3,2.8 color=red
+box 0.3,-2.5 7.2,2.8 color=white
+text "Неверно" -3.75,2.4 size=32 color=red align=center
+text "Верно" 3.75,2.4 size=32 color=white align=center
+tex "2x\cdot3x=6x" -3.75,1.4 size=44 align=center
+& tex "2x\cdot3x=6x^2" 3.75,1.4 size=44 align=center
+tex "x+x=x^2" -3.75,0.4 size=44 align=center
+& tex "x+x=2x" 3.75,0.4 size=44 align=center
+tex "(2x)^2=2x^2" -3.75,-0.6 size=44 align=center
+& tex "(2x)^2=4x^2" 3.75,-0.6 size=44 align=center
+tex "x^2\cdot x^3=x^6" -3.75,-1.6 size=44 align=center
+& tex "x^2\cdot x^3=x^5" 3.75,-1.6 size=44 align=center
+text "при умножении степени складываем, при сложении — буквы не трогаем" 0,-3.5 size=26 color=gray align=center
+pause
+
+# 13 ── Практика
+clear
+heading "Решите сами — пишите ответ на доске"
+box -7.4,-3.4 7.6,2.9 color=blue
+text "1) Стандартный вид" -7.0,2.1 size=28
+tex "4a\cdot(-3)\cdot a^2\cdot b" -1.4,2.1 size=40 color=blue
+text "2) Коэффициент и степень" -7.0,0.9 size=28
+tex "-\frac{1}{2}x^3y^2z" -1.4,0.9 size=40 color=blue
+text "3) Умножьте" -7.0,-0.3 size=28
+tex "(-3x^2y)\cdot(4xy^5)" -1.4,-0.3 size=40 color=blue
+text "4) Возведите в степень" -7.0,-1.5 size=28
+tex "(-\frac{1}{3}ab^2)^3" -1.4,-1.5 size=40 color=blue
+text "5) Сложите" -7.0,-2.7 size=28
+tex "7m^2n-10m^2n+4m^2n" -1.4,-2.7 size=40 color=blue
+pause
+
+# Ответы
+tex "=-12a^3b" 4.4,2.1 size=36 color=white
+tex "-\frac{1}{2};\ 6" 4.4,0.9 size=36 color=white
+tex "=-12x^3y^6" 4.4,-0.3 size=36 color=white
+tex "=-\frac{1}{27}a^3b^6" 4.4,-1.5 size=36 color=white
+tex "=m^2n" 4.4,-2.7 size=36 color=white
+pause
+
+# 14 ── Итоги
+clear
+heading "Итоги урока"
+point -6.9,2.5 color=blue time=0.2
+text "Одночлен — число · буквы · степени, без «+» и «−»" -6.5,2.5 size=30
+point -6.9,1.6 color=blue time=0.2
+text "Стандартный вид: коэффициент впереди, буквы в степенях" -6.5,1.6 size=30
+point -6.9,0.7 color=blue time=0.2
+text "Степень одночлена — сумма показателей букв" -6.5,0.7 size=30
+point -6.9,-0.2 color=blue time=0.2
+text "Подобные: одинаковая буквенная часть → складываем коэффициенты" -6.5,-0.2 size=30
+point -6.9,-1.1 color=blue time=0.2
+text "Умножение: коэффициенты перемножаем, показатели складываем" -6.5,-1.1 size=30
+box -6.0,-3.0 6.0,-1.8 color=yellow
+tex "(ab)^n=a^nb^n,\qquad (a^m)^n=a^{mn}" 0,-2.4 size=44 color=yellow align=center
+text "Домашнее задание: придумайте 3 пары подобных одночленов и сложите их" 0,-3.8 size=24 color=gray align=center

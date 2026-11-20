@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#000000"><meta name="mobile-web-app-capable" content="yes">
+<title>MathBoard</title>
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;overscroll-behavior:none;touch-action:none;-webkit-user-select:none;user-select:none;font-family:Georgia,"Times New Roman",serif}
+canvas{position:fixed;inset:0;width:100%;height:100%;touch-action:none;display:block}
+#ui{position:fixed;right:10px;bottom:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;max-width:96vw;z-index:5}
+#ui button{min-width:46px;height:46px;padding:0 14px;border-radius:12px;border:1px solid #3a3f4d;background:#14161c;color:#e8eaf0;font-size:16px;font-family:inherit}
+#ui button:active{background:#2a2f3c}
+.dot{width:34px;height:34px;border-radius:50%;border:3px solid #2a2d36;box-sizing:border-box}.dot.on{border-color:#fff;transform:scale(1.15)}
+#status{position:fixed;left:14px;bottom:10px;color:#5b6377;font:13px system-ui,sans-serif;z-index:4}
+#err{position:fixed;left:14px;top:10px;color:#fc6255;font:14px system-ui,sans-serif;z-index:4}
+#bar{position:fixed;left:0;bottom:0;height:4px;width:0;background:#58c4dd;z-index:4}
+</style></head><body>
+<canvas id="c"></canvas><div id="bar"></div><div id="status"></div><div id="err"></div><div id="ui"></div>
+<script>
+"use strict";
+const $=id=>document.getElementById(id),cv=$('c'),ctx=cv.getContext('2d');
+const PAL={blue:'#58C4DD',yellow:'#F7D96F',red:'#FC6255',green:'#83C167',teal:'#5CD0B3',purple:'#9A72AC',orange:'#FF862F',white:'#E8EAF0',gray:'#8B93A7',pink:'#D147BD'};
+const PENS=['white','yellow','red','blue','green','orange','purple'].map(k=>PAL[k]);
+const DUR={axes:1,text:.9,tex:1,plot:2,line:1,arrow:1,circle:1,point:.5,clear:.6,fadeout:.6,morph:1.5,move:1.2,view:0,heading:.9,box:.7};
+const smooth=t=>{t=Math.min(1,Math.max(0,t));const s=v=>1/(1+Math.exp(-10*(v-.5)));return(s(t)-s(0))/(s(1)-s(0))};
+const compileJS=s=>{try{return new Function('x','return '+s)}catch(e){return()=>NaN}};
+
+/*SCENE*/
+function mkObj(c){const col=c.kw.color||'white';
+  const o={op:c.op,a:c.args,kw:c.kw,g:c.g,lg:c.lg,id:c.kw.id,color:PAL[col]||col,vis:false,dead:false,reveal:0,alpha:1,m:0,f:null,f2:null,pos:[0,0]};
+  if(c.op=='text'||c.op=='tex')o.pos=[...c.args[1]];else if(c.op=='point'||c.op=='circle')o.pos=[...c.args[0]];
+  if(c.op=='plot')o.f=compileJS(c.js);return o}
+class Scene{
+  constructor(){this.reset()}
+  reset(){this.objs=[];this.anims=[];this.view=[-8,8,-4.5,4.5]}
+  find(i){for(let k=this.objs.length-1;k>=0;k--){const o=this.objs[k];if(o.id===i&&!o.dead)return o}return null}
+  add(s,d,f){this.anims.push({s,d,f})}
+  play(cmds,now,instant){let prev=now,end=now;
+    for(const c of cmds){const d=instant?0:1000*(c.op=='wait'?c.args[0]:(c.kw.time??DUR[c.op]??1));
+      const start=c.par?prev:end;prev=start;end=c.par?Math.max(end,start+d):start+d;
+      if(c.op!='wait')this.plan(c,start,d)}
+    this.tick(now)}
+  plan(c,start,d){const op=c.op,a=c.args;
+    if(['axes','text','tex','plot','line','arrow','circle','point','heading','box','poly','angle','rightangle','tick'].includes(op)){
+      const o=mkObj(c),v=op=='axes'?[a[0][0],a[0][1],a[1][0],a[1][1]]:null;this.objs.push(o);
+      this.add(start,d,p=>{o.vis=true;o.reveal=p;if(v)this.view=v});return}
+    if(op=='view'){const v=[a[0][0],a[0][1],a[1][0],a[1][1]];this.add(start,0,()=>{this.view=v});return}
+    if(op=='clear'){const t=[...this.objs];this.add(start,d,p=>{for(const o of t){o.alpha=1-p;if(p>=1)o.dead=true}});return}
+    const o=typeof a[0]=='string'?this.find(a[0]):null;if(!o)return;
+    if(op=='fadeout')this.add(start,d,p=>{o.alpha=1-p;if(p>=1)o.dead=true});
+    else if(op=='morph'&&o.op=='plot'){const f2=compileJS(c.js);this.add(start,d,p=>{o.f2=f2;o.m=p;if(p>=1){o.f=f2;o.m=0}})}
+    else if(op=='move'){let st=null;this.add(start,d,p=>{st=st||[...o.pos];o.pos=[st[0]+(a[1][0]-st[0])*p,st[1]+(a[1][1]-st[1])*p]})}}
+  tick(now){const keep=[];this.anims.sort((x,y)=>x.s-y.s);
+    for(const an of this.anims){if(now<an.s){keep.push(an);continue}
+      const p=an.d<=0?1:Math.min(1,(now-an.s)/an.d);an.f(smooth(p));if(p<1)keep.push(an)}
+    this.anims=keep;this.objs=this.objs.filter(o=>!o.dead);return keep.length>0}}
+/*ENDSCENE*/
+
+// ---------- состояние и сеть ----------
+let ws,role='student',script={blocks:[],glyphs:{}},block=-1,strokes=new Map(),drawOk=true,pen=PENS[1],err='',nStud=0,tg=null;
+const sc=new Scene(),mine=[],now=()=>performance.now();let dirty=true;
+function connect(){ws=new WebSocket((location.protocol=='https:'?'wss':'ws')+'://'+location.host+'/ws'+location.search);
+  ws.onmessage=e=>onMsg(JSON.parse(e.data));ws.onclose=()=>{$('status').textContent='нет связи… переподключаюсь';setTimeout(connect,1000)}}
+const send=o=>{if(ws&&ws.readyState==1)ws.send(JSON.stringify(o))};
+function onMsg(m){const t=m.type;
+  if(t=='init'){script=m.script;role=m.role;strokes=new Map(Object.entries(m.strokes));drawOk=m.draw_ok;err=m.err;
+    for(const g of Object.values(script.glyphs)){g.all=new Path2D();g.cs=g.c.map(c=>{const p=new Path2D(c.d);g.all.addPath(p);return[p,c.l]})}
+    rebuild(m.block);inkDirty=true;buildUI()}
+  else if(t=='goto'){m.animate?play(m.block):rebuild(m.block)}
+  else if(t=='seg')addPts(m.id,m.color,m.pts);
+  else if(t=='rm'){strokes.delete(m.id);inkDirty=true}
+  else if(t=='clear'){strokes.clear();inkDirty=true}
+  else if(t=='draw_ok')drawOk=m.v;
+  else if(t=='count')nStud=m.n;
+  dirty=true;status()}
+function rebuild(b){sc.reset();for(let i=0;i<=b;i++)sc.play(script.blocks[i],now(),true);block=b;dirty=true}
+function play(b){block=b;sc.play(script.blocks[b],now(),false);dirty=true}
+function status(){const n=Math.max(1,script.blocks.length);$('bar').style.width=(block+1)/n*100+'%';
+  $('status').textContent=role=='teacher'?`${block+1}/${n} · учеников: ${nStud}`:`${block+1}/${n}`+(drawOk?'':' · рисование выключено');
+  $('err').textContent=err?'Ошибка: '+err:'';if(tg)tg.textContent='Ученики рисуют: '+(drawOk?'да':'нет')}
+
+// ---------- геометрия ----------
+let W,H,dpr,k,SC,OX,OY,inkC=document.createElement('canvas'),inkX=inkC.getContext('2d'),inkDirty=true,vkey='';
+function layout(){dpr=window.devicePixelRatio||1;W=innerWidth;H=innerHeight;k=Math.min(W/1280,H/720);
+  for(const c of [cv,inkC]){c.width=Math.round(W*dpr);c.height=Math.round(H*dpr)}
+  ctx.setTransform(dpr,0,0,dpr,0,0);inkX.setTransform(dpr,0,0,dpr,0,0);relView();inkDirty=dirty=true}
+function relView(){const[x0,x1,y0,y1]=sc.view,hh=H-30;SC=Math.min(W/(x1-x0),hh/(y1-y0))*.94;
+  OX=W/2-(x0+x1)/2*SC;OY=hh/2+(y0+y1)/2*SC;vkey=sc.view.join()+W+H}
+const px=x=>OX+x*SC,py=y=>OY-y*SC;
+
+// ---------- рисунки участников ----------
+function inkLine(color,pts){inkX.strokeStyle=color;inkX.lineWidth=3.2*k;inkX.lineCap=inkX.lineJoin='round';inkX.beginPath();
+  pts.forEach(([x,y],i)=>i?inkX.lineTo(px(x),py(y)):inkX.moveTo(px(x),py(y)));if(pts.length==1)inkX.lineTo(px(pts[0][0])+.01,py(pts[0][1]));inkX.stroke()}
+function addPts(id,color,pts){let s=strokes.get(id);if(!s){s={color,pts:[]};strokes.set(id,s)}
+  const prev=s.pts.slice(-1);s.pts.push(...pts);if(!inkDirty)inkLine(color,prev.concat(pts));dirty=true}
+function rebuildInk(){inkX.clearRect(0,0,W,H);for(const s of strokes.values())if(s.pts.length)inkLine(s.color,s.pts);inkDirty=false}
+
+// ---------- эффект Write (контур → заливка), как в Manim ----------
+function write(g,X,Y,em,color,r,al){const m=em/400;ctx.save();ctx.translate(X,Y);ctx.scale(m,m);
+  const fa=Math.max(0,Math.min(1,(r-.4)/.6));
+  if(fa>0){ctx.globalAlpha=fa*al;ctx.fillStyle=color;ctx.fill(g.all)}
+  if(r<1){ctx.globalAlpha=(r<.85?1:Math.max(0,(1-r)/.15))*al;ctx.strokeStyle=color;ctx.lineWidth=2.6*k/m;ctx.lineCap=ctx.lineJoin='round';
+    const s=Math.min(1,r/.8);for(const[p,L]of g.cs){ctx.setLineDash([Math.max(1e-3,s*L),L+1]);ctx.stroke(p)}}
+  ctx.restore()}
+
+function drawObj(o){const r=o.reveal,al=o.alpha,a=o.a;ctx.save();ctx.globalAlpha=al;
+  if(o.op=='axes'){const[x0,x1,y0,y1]=sc.view,st=[1,2,5,10,20,50,100].find(s=>(x1-x0)/s<=16)||100;
+    ctx.globalAlpha=.22*r*al;ctx.strokeStyle='#58C4DD';ctx.lineWidth=1.2*k;ctx.beginPath();
+    for(let i=Math.ceil(x0/st);i*st<=x1+1e-9;i++){ctx.moveTo(px(i*st),py(y0));ctx.lineTo(px(i*st),py(y1))}
+    for(let i=Math.ceil(y0/st);i*st<=y1+1e-9;i++){ctx.moveTo(px(x0),py(i*st));ctx.lineTo(px(x1),py(i*st))}ctx.stroke();
+    ctx.globalAlpha=r*al;ctx.strokeStyle='#fff';ctx.lineWidth=2.2*k;ctx.beginPath();
+    ctx.moveTo(px(x0),py(0));ctx.lineTo(px(x0+(x1-x0)*r),py(0));ctx.moveTo(px(0),py(y0));ctx.lineTo(px(0),py(y0+(y1-y0)*r));ctx.stroke();
+    ctx.fillStyle='#aaa';ctx.font=`${15*k}px Georgia,serif`;
+    for(let i=Math.ceil(x0/st);i*st<=x1+1e-9;i++)if(i)ctx.fillText(i*st,px(i*st)-5*k,py(0)+20*k);
+    for(let i=Math.ceil(y0/st);i*st<=y1+1e-9;i++)if(i)ctx.fillText(i*st,px(0)+8*k,py(i*st)+5*k)}
+  else if(o.op=='plot'){const[x0,x1,vy0,vy1]=sc.view;ctx.beginPath();ctx.rect(px(x0),py(vy1),(x1-x0)*SC,(vy1-vy0)*SC);ctx.clip();
+    ctx.strokeStyle=o.color;ctx.lineWidth=(o.kw.width||4)*k;ctx.lineJoin='round';ctx.beginPath();
+    const N=700,n=Math.floor(N*r);let on=false;
+    for(let i=0;i<=n;i++){const x=x0+(x1-x0)*i/N;let y=o.f(x);if(o.m)y=(1-o.m)*y+o.m*o.f2(x);
+      if(isFinite(y)&&Math.abs(y)<1e3){on?ctx.lineTo(px(x),py(y)):ctx.moveTo(px(x),py(y));on=true}else on=false}ctx.stroke()}
+  else if(o.op=='line'||o.op=='arrow'){const[[ax,ay],[bx,by]]=a;ctx.setLineDash(o.kw.dash?[10*k,9*k]:[]);ctx.strokeStyle=ctx.fillStyle=o.color;ctx.lineWidth=(o.kw.width||4)*k;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(px(ax),py(ay));ctx.lineTo(px(ax+(bx-ax)*r),py(ay+(by-ay)*r));ctx.stroke();
+    if(o.op=='arrow'&&r>.97){const an=Math.atan2(py(by)-py(ay),px(bx)-px(ax)),h=16*k;ctx.beginPath();ctx.moveTo(px(bx),py(by));
+      for(const d of[2.7,-2.7])ctx.lineTo(px(bx)+h*Math.cos(an+d),py(by)+h*Math.sin(an+d));ctx.fill()}}
+  else if(o.op=='circle'){ctx.strokeStyle=o.color;ctx.lineWidth=(o.kw.width||4)*k;ctx.beginPath();
+    ctx.arc(px(o.pos[0]),py(o.pos[1]),a[1]*SC,-Math.PI/2,-Math.PI/2+2*Math.PI*r);ctx.stroke()}
+  else if(o.op=='point'){ctx.fillStyle=o.color;ctx.beginPath();ctx.arc(px(o.pos[0]),py(o.pos[1]),(o.kw.dot??6)*k*r,0,7);ctx.fill();
+    if(o.lg){const g=script.glyphs[o.lg],em=(o.kw.lsize||34)*k;write(g,px(o.pos[0]+(o.kw.ldx??.3))-(g.b[0]+g.b[1])/2*em/400,py(o.pos[1]+(o.kw.ldy??.3))+.33*em,em,o.color,r,al)}else if(o.kw.label){ctx.globalAlpha=al*r;ctx.font=`${30*k}px Georgia,serif`;ctx.fillText(String(o.kw.label),px(o.pos[0])+14*k,py(o.pos[1])-14*k)}}
+  else if(o.op=='poly'){const P=a.map(([x,y])=>[px(x),py(y)]),Q=[...P,P[0]],seg=[];let L=0;
+    for(let i=0;i<Q.length-1;i++){const d=Math.hypot(Q[i+1][0]-Q[i][0],Q[i+1][1]-Q[i][1]);seg.push(d);L+=d}
+    if(o.kw.fill){ctx.globalAlpha=al*.2*r;ctx.fillStyle=PAL[o.kw.fill]||o.kw.fill;ctx.beginPath();P.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.fill();ctx.globalAlpha=al}
+    ctx.setLineDash(o.kw.dash?[10*k,9*k]:[]);ctx.strokeStyle=o.color;ctx.lineWidth=(o.kw.width||4)*k;ctx.lineJoin=ctx.lineCap='round';ctx.beginPath();ctx.moveTo(Q[0][0],Q[0][1]);
+    let rem=r*L;for(let i=0;i<seg.length&&rem>0;i++){const f=Math.min(1,rem/seg[i]);ctx.lineTo(Q[i][0]+(Q[i+1][0]-Q[i][0])*f,Q[i][1]+(Q[i+1][1]-Q[i][1])*f);rem-=seg[i]}ctx.stroke()}
+  else if(o.op=='angle'){const[V,P1,P2]=a,ru=o.kw.r||.5,n=o.kw.n||1,a1=Math.atan2(P1[1]-V[1],P1[0]-V[0]);let d=Math.atan2(P2[1]-V[1],P2[0]-V[0])-a1;
+    while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;ctx.strokeStyle=o.color;ctx.lineWidth=(o.kw.width||3)*k;ctx.lineCap='round';
+    for(let i=0;i<n;i++){ctx.beginPath();ctx.arc(px(V[0]),py(V[1]),(ru+i*.09)*SC,-a1,-(a1+d*r),d>0);ctx.stroke()}
+    if(o.lg){const g=script.glyphs[o.lg],em=(o.kw.lsize||28)*k,m=a1+d/2,rr=ru+.1*(n-1)+.45;
+      write(g,px(V[0]+rr*Math.cos(m))-(g.b[0]+g.b[1])/2*em/400,py(V[1]+rr*Math.sin(m))+.33*em,em,o.color,r,al)}}
+  else if(o.op=='rightangle'){const[V,P1,P2]=a,s=o.kw.size||.28,u=P=>{const dx=P[0]-V[0],dy=P[1]-V[1],n=Math.hypot(dx,dy)||1;return[dx/n,dy/n]},u1=u(P1),u2=u(P2);
+    ctx.globalAlpha=al*r;ctx.strokeStyle=o.color;ctx.lineWidth=(o.kw.width||2.5)*k;ctx.beginPath();ctx.moveTo(px(V[0]+s*u1[0]),py(V[1]+s*u1[1]));
+    ctx.lineTo(px(V[0]+s*(u1[0]+u2[0])),py(V[1]+s*(u1[1]+u2[1])));ctx.lineTo(px(V[0]+s*u2[0]),py(V[1]+s*u2[1]));ctx.stroke()}
+  else if(o.op=='tick'){const[p,q]=a,mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2,dx=q[0]-p[0],dy=q[1]-p[1],n=Math.hypot(dx,dy)||1,ux=dx/n,uy=dy/n,nx=-uy,ny=ux,cnt=o.kw.n||1;
+    ctx.globalAlpha=al*r;ctx.strokeStyle=o.color;ctx.lineWidth=3*k;ctx.lineCap='round';ctx.beginPath();
+    for(let i=0;i<cnt;i++){const t=(i-(cnt-1)/2)*.13,cx=mx+ux*t,cy=my+uy*t;ctx.moveTo(px(cx-nx*.14),py(cy-ny*.14));ctx.lineTo(px(cx+nx*.14),py(cy+ny*.14))}ctx.stroke()}
+  else if(o.op=='box'){const[[x0,y0],[x1,y1]]=a,xa=px(Math.min(x0,x1)),xb=px(Math.max(x0,x1)),ya=py(Math.max(y0,y1)),yb=py(Math.min(y0,y1)),L=2*((xb-xa)+(yb-ya));
+    ctx.strokeStyle=o.color;ctx.lineWidth=3*k;ctx.lineJoin='miter';ctx.setLineDash([Math.max(1e-3,r*L*1.002),L+1]);
+    ctx.beginPath();ctx.moveTo(xa,ya);ctx.lineTo(xb,ya);ctx.lineTo(xb,yb);ctx.lineTo(xa,yb);ctx.closePath();ctx.stroke()}
+  else if(o.op=='text'||o.op=='tex'){const g=script.glyphs[o.g],em=(o.kw.size||(o.op=='text'?34:40))*k;
+    let X=px(o.pos[0]),Y=py(o.pos[1])+.33*em;if(o.kw.align=='center')X-=(g.b[0]+g.b[1])/2*em/400;write(g,X,Y,em,o.color,r,al)}
+  else if(o.op=='heading'){const g=script.glyphs[o.g],em=48*k,X=W*.07,Y=H*.13;write(g,X,Y,em,'#F2F3F7',r,al);
+    ctx.strokeStyle='#58C4DD';ctx.lineWidth=4*k;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(X,Y+18*k);ctx.lineTo(X+g.b[1]*em/400*r,Y+18*k);ctx.stroke()}
+  ctx.restore()}
+
+function render(){if(sc.view.join()+W+H!=vkey){relView();inkDirty=true}
+  ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+  for(const o of sc.objs)if(o.vis)drawObj(o);
+  if(inkDirty)rebuildInk();ctx.drawImage(inkC,0,0,W,H)}
+function frame(){const busy=sc.tick(now());if(busy||dirty||inkDirty){render();dirty=false}requestAnimationFrame(frame)}
+
+// ---------- ввод: палец / стилус / мышь ----------
+let cur=null,buf=[],penSeen=false;const uid=()=>Math.random().toString(36).slice(2,10);
+const canDraw=()=>role=='teacher'||drawOk;
+cv.addEventListener('pointerdown',e=>{if(!canDraw())return;if(e.pointerType=='pen')penSeen=true;if(e.pointerType=='touch'&&penSeen)return; // ладонь не рисует, если есть стилус
+  cv.setPointerCapture(e.pointerId);cur={id:uid(),pid:e.pointerId};mine.push(cur.id);buf=[];pt(e)});
+cv.addEventListener('pointermove',e=>{if(cur&&e.pointerId==cur.pid)for(const ev of(e.getCoalescedEvents?e.getCoalescedEvents():[e]))pt(ev)});
+const end=e=>{if(cur&&e.pointerId==cur.pid){flush();cur=null}};cv.addEventListener('pointerup',end);cv.addEventListener('pointercancel',end);
+function pt(e){const p=[(e.clientX-OX)/SC,(OY-e.clientY)/SC];addPts(cur.id,pen,[p]);buf.push(p);if(buf.length>=3)flush()}
+function flush(){if(cur&&buf.length){send({type:'seg',id:cur.id,color:pen,pts:buf});buf=[]}}
+function undo(){const id=mine.pop();if(id){strokes.delete(id);inkDirty=true;send({type:'undo',id})}}
+const fs=()=>{const d=document.documentElement;document.fullscreenElement?document.exitFullscreen():d.requestFullscreen&&d.requestFullscreen()};
+addEventListener('keydown',e=>{if(e.key>='1'&&e.key<='7'){pen=PENS[+e.key-1];buildUI();return}if(e.key=='f'||e.key=='F'){fs();return}
+  if(role!='teacher')return;
+  if([' ','ArrowRight','PageDown'].includes(e.key)){e.preventDefault();send({type:'next'})}
+  else if(['ArrowLeft','PageUp'].includes(e.key))send({type:'prev'});else if(e.key=='Home')send({type:'reset'});
+  else if(e.key=='r'||e.key=='R')send({type:'reload'});else if(e.key=='c'||e.key=='C')send({type:'clear'});else if(e.key=='d'||e.key=='D')send({type:'toggle'})});
+
+// ---------- кнопки (крупные, под планшет) ----------
+function buildUI(){const u=$('ui');u.innerHTML='';
+  const btn=(t,f)=>{const b=document.createElement('button');b.textContent=t;b.onclick=f;u.appendChild(b);return b};
+  if(role=='teacher'){btn('◀',()=>send({type:'prev'}));btn('Далее ▶',()=>send({type:'next'}));btn('⟲',()=>send({type:'reset'}));
+    btn('Стереть всё',()=>send({type:'clear'}));tg=btn('',()=>send({type:'toggle'}));btn('Перечитать',()=>send({type:'reload'}))}
+  PENS.forEach(c=>{const d=document.createElement('div');d.className='dot'+(c==pen?' on':'');d.style.background=c;d.onclick=()=>{pen=c;buildUI()};u.appendChild(d)});
+  btn('↶',undo);btn('⛶',fs);status()}
+
+addEventListener('resize',layout);addEventListener('orientationchange',()=>setTimeout(layout,200));
+layout();connect();requestAnimationFrame(frame);
+try{navigator.wakeLock&&navigator.wakeLock.request('screen')}catch(e){}  // экран планшета не гаснет во время урока
+</script></body></html>

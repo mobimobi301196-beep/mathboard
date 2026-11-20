@@ -1,0 +1,203 @@
+# УРОК «МНОГОЧЛЕНЫ», 7 класс. Пробел = следующий шаг (13 шагов).
+# Правило цветов: белый — верно/основное, красный — неверно, жёлтый — главное, голубой — шаги, серый — подсказки.
+title "Многочлены"
+
+# 1 ── Заставка
+text "МНОГОЧЛЕНЫ" 0,1.0 size=104 color=yellow align=center time=1.4
+line -2.9,0.15 2.9,0.15 color=blue width=4 time=0.8
+text "Алгебра · 7 класс" 0,-0.5 size=38 color=gray align=center
+wait 0.4
+tex "3x^2-5x+2\qquad a^3+2ab-b\qquad x^2y-7" 0,-2.3 size=50 color=blue align=center
+pause
+
+# 2 ── Определение, члены многочлена
+clear
+heading "Что такое многочлен"
+box -7.2,1.0 7.2,2.8 color=yellow
+text "Многочлен — сумма одночленов" 0,2.25 size=36 align=center
+text "Каждое слагаемое называется членом многочлена" 0,1.45 size=30 color=blue align=center
+tex "3x^2" -3.4,-0.4 size=76 align=center
+tex "-5x" 0,-0.4 size=76 align=center
+tex "+2" 3.2,-0.4 size=76 align=center
+box -4.9,-1.4 -1.9,0.6 color=blue
+& box -1.5,-1.4 1.5,0.6 color=blue
+& box 1.9,-1.4 4.6,0.6 color=blue
+text "три члена — трёхчлен (два — двучлен)" 0,-2.3 size=30 color=gray align=center
+text "Одночлен — тоже многочлен, с одним членом" 0,-3.2 size=30 align=center
+pause
+
+# 3 ── Многочлен или нет?
+clear
+heading "Многочлен или нет?"
+box -7.2,-3.4 -0.3,2.8 color=white
+box 0.3,-3.4 7.2,2.8 color=red
+text "Многочлены" -3.75,2.3 size=34 align=center
+text "Не многочлены" 3.75,2.3 size=34 color=red align=center
+tex "x^2-4" -3.75,1.3 size=44 align=center time=0.5
+tex "a^3+2ab-b" -3.75,0.4 size=44 align=center time=0.5
+tex "5x" -3.75,-0.5 size=44 align=center time=0.5
+tex "3x^2y-x+7" -3.75,-1.4 size=44 align=center time=0.5
+wait 0.4
+tex "\frac{3}{x}+x" 3.75,1.3 size=44 color=red align=center time=0.5
+tex "\frac{a}{b}-2" 3.75,0.4 size=44 color=red align=center time=0.5
+tex "\sqrt{x}+1" 3.75,-0.5 size=44 color=red align=center time=0.5
+tex "\frac{1}{x^2}-x" 3.75,-1.4 size=44 color=red align=center time=0.5
+text "только сумма одночленов" -3.75,-2.7 size=26 color=gray align=center
+text "деление на переменную," 3.75,-2.5 size=26 color=gray align=center
+text "корень из переменной" 3.75,-3.05 size=26 color=gray align=center
+pause
+
+# 4 ── Приведение подобных
+clear
+heading "Приведение подобных членов"
+tex "3x^2+5x-x^2+2x-7" 0,2.3 size=54 align=center
+arrow 0,1.7 0,0.95 color=gray time=0.5
+text "сгруппируем подобные" 0.5,1.3 size=26 color=gray
+tex "(3x^2-x^2)+(5x+2x)-7" 0,0.3 size=54 color=blue align=center
+arrow 0,-0.4 0,-1.05 color=gray time=0.5
+text "сложим коэффициенты" 0.5,-0.75 size=26 color=gray
+box -2.7,-2.7 2.7,-1.3 color=yellow
+tex "2x^2+7x-7" 0,-2.0 size=66 color=yellow align=center
+text "подобные члены — с одинаковой буквенной частью" 0,-3.7 size=28 color=gray align=center
+pause
+
+# 5 ── Степень многочлена
+clear
+heading "Степень многочлена"
+tex "5x^3" -5.6,2.0 size=60 align=center
+tex "-2x^2y^2" -1.9,2.0 size=60 align=center
+tex "+x" 2.0,2.0 size=60 align=center
+tex "-4" 5.2,2.0 size=60 align=center
+text "степень 3" -5.6,0.3 size=26 color=gray align=center
+text "степень 4" -1.9,0.3 size=26 color=gray align=center
+text "степень 1" 2.0,0.3 size=26 color=gray align=center
+text "степень 0" 5.2,0.3 size=26 color=gray align=center
+wait 0.4
+box -3.8,-0.3 0.0,2.9 color=yellow
+text "Степень многочлена — наибольшая из степеней его членов" 0,-1.3 size=32 align=center
+text "Степень этого многочлена — 4" 0,-2.5 size=44 color=yellow align=center
+text "(многочлен должен быть в стандартном виде)" 0,-3.7 size=26 color=gray align=center
+pause
+
+# 6 ── Сложение
+clear
+heading "Сложение многочленов"
+tex "(3x^2+2x-1)+(x^2-5x+4)" 0,2.3 size=54 align=center
+arrow 0,1.7 0,0.95 color=gray time=0.5
+text "скобки с плюсом просто убираем" 0.5,1.3 size=26 color=gray
+tex "=3x^2+2x-1+x^2-5x+4" 0,0.3 size=54 color=blue align=center
+arrow 0,-0.4 0,-1.05 color=gray time=0.5
+text "приводим подобные" 0.5,-0.75 size=26 color=gray
+box -3.0,-2.7 3.0,-1.3 color=yellow
+tex "=4x^2-3x+3" 0,-2.0 size=66 color=yellow align=center
+pause
+
+# 7 ── Вычитание
+clear
+heading "Вычитание многочленов"
+tex "(3x^2+2x-1)-(x^2-5x+4)" 0,2.3 size=54 align=center
+arrow 0,1.7 0,0.95 color=gray time=0.5
+text "минус перед скобкой меняет ВСЕ знаки внутри" 0.5,1.3 size=26 color=red
+tex "=3x^2+2x-1-x^2+5x-4" 0,0.3 size=54 color=blue align=center
+arrow 0,-0.4 0,-1.05 color=gray time=0.5
+text "приводим подобные" 0.5,-0.75 size=26 color=gray
+box -3.0,-2.7 3.0,-1.3 color=yellow
+tex "=2x^2+7x-5" 0,-2.0 size=66 color=yellow align=center
+pause
+
+# 8 ── Одночлен на многочлен
+clear
+heading "Умножение одночлена на многочлен"
+tex "2x\cdot(3x^2-x+5)" 0,2.3 size=56 align=center
+arrow 0,1.7 0,0.95 color=gray time=0.5
+text "умножаем на каждый член скобки" 0.5,1.3 size=26 color=gray
+tex "=2x\cdot3x^2-2x\cdot x+2x\cdot5" 0,0.3 size=50 color=blue align=center
+arrow 0,-0.4 0,-1.05 color=gray time=0.5
+text "умножаем одночлены" 0.5,-0.75 size=26 color=gray
+box -3.4,-2.7 3.4,-1.3 color=yellow
+tex "=6x^3-2x^2+10x" 0,-2.0 size=62 color=yellow align=center
+pause
+
+# 9 ── Многочлен на многочлен (площадь прямоугольника)
+clear
+heading "Умножение многочленов"
+line -6.8,2.4 -2.6,2.4 color=white time=0.5
+& line -2.6,2.4 -2.6,-1.3 color=white time=0.5
+& line -2.6,-1.3 -6.8,-1.3 color=white time=0.5
+& line -6.8,-1.3 -6.8,2.4 color=white time=0.5
+line -4.2,2.4 -4.2,-1.3 color=blue width=2 time=0.4
+& line -6.8,-0.2 -2.6,-0.2 color=blue width=2 time=0.4
+tex "x" -5.5,2.85 size=36 color=yellow align=center
+& tex "3" -3.4,2.85 size=36 color=yellow align=center
+& tex "x" -7.35,1.1 size=36 color=yellow align=center
+& tex "2" -7.35,-0.75 size=36 color=yellow align=center
+tex "x^2" -5.5,1.1 size=44 align=center time=0.5
+& tex "3x" -3.4,1.1 size=44 align=center time=0.5
+& tex "2x" -5.5,-0.75 size=44 align=center time=0.5
+& tex "6" -3.4,-0.75 size=44 align=center time=0.5
+text "(x+3)(x+2) — площадь прямоугольника" -4.7,-2.4 size=28 align=center
+tex "(x+3)(x+2)" 3.8,2.1 size=54 align=center
+tex "=x^2+3x+2x+6" 3.8,0.9 size=46 color=blue align=center
+box 1.2,-1.5 6.4,0.1 color=yellow
+tex "=x^2+5x+6" 3.8,-0.7 size=56 color=yellow align=center
+text "каждый член первой скобки × каждый член второй, потом подобные" 0,-3.6 size=28 color=gray align=center
+pause
+
+# 10 ── Частые ошибки
+clear
+heading "Частые ошибки"
+box -7.2,-2.5 -0.3,2.8 color=red
+box 0.3,-2.5 7.2,2.8 color=white
+text "Неверно" -3.75,2.4 size=32 color=red align=center
+text "Верно" 3.75,2.4 size=32 align=center
+tex "-(a-b)=-a-b" -3.75,1.4 size=38 color=red align=center
+& tex "-(a-b)=-a+b" 3.75,1.4 size=38 align=center
+tex "(x+2)(x+3)=x^2+6" -3.75,0.4 size=38 color=red align=center
+& tex "(x+2)(x+3)=x^2+5x+6" 3.75,0.4 size=38 align=center
+tex "2x(x+3)=2x^2+3" -3.75,-0.6 size=38 color=red align=center
+& tex "2x(x+3)=2x^2+6x" 3.75,-0.6 size=38 align=center
+tex "3x+2x=5x^2" -3.75,-1.6 size=38 color=red align=center
+& tex "3x+2x=5x" 3.75,-1.6 size=38 align=center
+text "минус перед скобкой меняет знаки · каждый член умножаем на каждый" 0,-3.5 size=26 color=gray align=center
+pause
+
+# 11 ── Практика
+clear
+heading "Решите сами — пишите ответ на доске"
+box -7.4,-3.4 7.6,2.9 color=blue
+text "1) Приведите подобные" -7.0,2.1 size=28
+tex "4a^2-3a+a^2+7a-2" -2.6,2.1 size=38 color=blue
+text "2) Степень многочлена" -7.0,0.9 size=28
+tex "2x^3y-x^2y^3+5" -2.6,0.9 size=38 color=blue
+text "3) Сложите" -7.0,-0.3 size=28
+tex "(2x^2-3x+1)+(x^2+4x-6)" -2.6,-0.3 size=38 color=blue
+text "4) Вычтите" -7.0,-1.5 size=28
+tex "(5a^2+a)-(2a^2-3a+4)" -2.6,-1.5 size=38 color=blue
+text "5) Умножьте" -7.0,-2.7 size=28
+tex "(x-2)(x+5)" -2.6,-2.7 size=38 color=blue
+pause
+
+# Ответы
+tex "=5a^2+4a-2" 3.9,2.1 size=34
+tex "5" 3.9,0.9 size=34
+tex "=3x^2+x-5" 3.9,-0.3 size=34
+tex "=3a^2+4a-4" 3.9,-1.5 size=34
+tex "=x^2+3x-10" 3.9,-2.7 size=34
+pause
+
+# 12 ── Итоги
+clear
+heading "Итоги урока"
+point -6.9,2.5 color=blue time=0.2
+text "Многочлен — сумма одночленов; слагаемые — его члены" -6.5,2.5 size=30
+point -6.9,1.6 color=blue time=0.2
+text "Подобные члены приводим: коэффициенты складываем" -6.5,1.6 size=30
+point -6.9,0.7 color=blue time=0.2
+text "Степень многочлена — наибольшая степень его члена" -6.5,0.7 size=30
+point -6.9,-0.2 color=blue time=0.2
+text "Скобки: «+» — знаки сохраняем, «−» — меняем все" -6.5,-0.2 size=30
+point -6.9,-1.1 color=blue time=0.2
+text "Умножение: каждый член на каждый, затем подобные" -6.5,-1.1 size=30
+box -6.0,-3.0 6.0,-1.8 color=yellow
+tex "(a+b)(c+d)=ac+ad+bc+bd" 0,-2.4 size=44 color=yellow align=center
+text "Домашнее задание: придумайте два многочлена, найдите их сумму и произведение" 0,-3.8 size=24 color=gray align=center

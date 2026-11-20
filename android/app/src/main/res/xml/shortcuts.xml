@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="teacher"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_teacher"
+        android:shortcutLongLabel="@string/shortcut_teacher">
+        <intent
+            android:action="ua.mathboard.TEACHER"
+            android:targetPackage="ua.mathboard.app"
+            android:targetClass="ua.mathboard.app.MainActivity" />
+    </shortcut>
+</shortcuts>
