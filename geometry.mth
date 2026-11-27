@@ -1,457 +1,440 @@
-# УРОК № 1 · Геометрия с полного нуля · 7 класс · Логический разбор
-# Управление: Пробел = следующий шаг, R = перезагрузить файл.
-title "Геометрия с нуля: как это устроено и почему это работает"
+title "Модуль 1. Аксиоматика, отрезки и углы: фундамент математического мышления"
 
-# 1 ── Введение и правила игры
-text "УРОК № 1 · ГЕОМЕТРИЯ С НУЛЯ" 0,3.2 size=32 color=gray align=center
-text "Не зубри правила — пойми логику" 0,2.1 size=50 color=yellow align=center time=1.4
-line -5.5,1.3 5.5,1.3 color=blue width=4 time=0.8
-text "Геометрия — это конструктор. Мы берём 3 простейшие детали" 0,0.55 size=25 color=white align=center
-text "и с помощью строгой логики (ЕСЛИ -> ТО) строим из них всё остальное." 0,-0.05 size=25 color=teal align=center
+text "МОДУЛЬ 1 · АРХИТЕКТУРА ГЕОМЕТРИИ (50 ШАГОВ)" 0,3.2 size=30 color=gray align=center
+text "Как думают математики: от аксиом до сложных задач" 0,2.1 size=44 color=yellow align=center time=1.4
+line -6.5,1.3 6.5,1.3 color=blue width=4 time=0.8
+text "Правило № 1: в математике нет слова «очевидно» и нет зубрёжки." 0,0.55 size=24 color=white align=center
+text "Каждый факт либо принят как стартовая аксиома, либо строго доказан." 0,-0.05 size=24 color=teal align=center
 tri -1.6,-3.6 0,-1.1 1.6,-3.6 names="A,B,C" color=blue fill=blue
 angle 0,-1.1 -1.6,-3.6 1.6,-3.6 r=0.55 color=yellow
 pause
 
-# 2 ── Точка и прямая: почему аксиома очевидна
 clear
-heading "Блок 1. Точка и прямая — из чего всё собрано"
-box -7.5,1.05 -0.2,2.85 color=blue
-text "1. ТОЧКА — это просто адрес в пространстве." -7.2,2.4 size=24 color=yellow
-text "У неё НЕТ размера (ни ширины, ни длины)." -7.2,1.88 size=23
-text "Мы рисуем кружок только чтобы её видеть." -7.2,1.38 size=23 color=gray
-point -5.5,0.1 label="A" ldx=0 ldy=0.4 color=yellow
-& point -3.8,-0.4 label="B" ldx=0 ldy=0.4 color=yellow
-& point -2.0,0.3 label="M" ldx=0 ldy=0.4 color=yellow
+heading "1. Почему нельзя определить ВСЁ? (Аксиомы и определения)"
+box -7.5,0.6 -0.2,2.85 color=blue
+text "Проблема бесконечного словаря:" -7.2,2.4 size=24 color=yellow
+text "Чтобы объяснить новое слово, нужны" -7.2,1.88 size=23
+text "старые слова. Но у словаря есть начало." -7.2,1.38 size=23
+text "Самые первые понятия не определяют —" -7.2,0.88 size=23 color=teal
+text "их принимают как базовые атомы." -7.2,0.38 size=23 color=teal
 pause
-box 0.2,1.05 7.5,2.85 color=blue
-text "2. ПРЯМАЯ — идеально ровная линия," 0.5,2.4 size=24 color=yellow
-text "бесконечная в обе стороны. На бумаге мы" 0.5,1.88 size=23
-text "видим лишь её кусок, но мысленно тянем вечно." 0.5,1.38 size=23 color=gray
-line 0.8,-0.3 7.0,0.5 color=blue width=4
-point 2.3,-0.11 label="A" ldx=-0.1 ldy=0.4 color=white
-& point 5.4,0.29 label="B" ldx=-0.1 ldy=0.4 color=white
-tex "a" 6.8,0.85 size=32 color=blue
+box 0.2,0.6 7.5,2.85 color=yellow
+text "Три базовых атома планиметрии:" 0.5,2.4 size=24 color=yellow
+text "1. ТОЧКА — позиция без размеров (A, B)." 0.5,1.88 size=23
+text "2. ПРЯМАЯ — бесконечная линия (a, AB)." 0.5,1.38 size=23
+text "3. ПЛОСКОСТЬ — бесконечный лист." 0.5,0.88 size=23
+text "Из них мы соберём ВСЕ теоремы!" 0.5,0.38 size=23 color=green
 pause
-box -7.5,-3.95 7.5,-1.45 color=yellow
-text "ПОЧЕМУ через две точки проходит ТОЛЬКО ОДНА прямая?" 0,-1.95 size=26 color=yellow align=center
-text "Логика: первая точка фиксирует место (как гвоздь), вторая задаёт строгое направление." 0,-2.6 size=24 align=center
-text "Если прямая не гнётся, она не может свернуть — значит, путь между A и B единственный." 0,-3.25 size=24 color=teal align=center
+box -7.5,-3.9 7.5,-1.2 color=teal
+text "СТРУКТУРА МАТЕМАТИЧЕСКОГО ЗНАНИЯ:" 0,-1.65 size=25 color=teal align=center
+text "• АКСИОМА — базовое правило игры, которое мы принимаем без доказательства." 0,-2.25 size=23 align=center
+text "• ТЕОРЕМА — утверждение, которое мы обязаны вывести из аксиом по правилам логики." 0,-2.85 size=23 align=center
+text "• ОБРАТНАЯ ТЕОРЕМА — меняем местами «ЕСЛИ» и «ТО» (и снова обязаны доказать!)." 0,-3.45 size=22 color=yellow align=center
 pause
 
-# 3 ── Луч и отрезок: в чём разница на уровне границ
 clear
-heading "Блок 1. Луч и отрезок — ставим границы на прямой"
-box -7.5,1.15 -0.2,2.85 color=blue
-text "ЛУЧ: поставили на прямой 1 точку-стену." -7.2,2.4 size=24 color=yellow
-text "В одну сторону пути нет (начало), в другую —" -7.2,1.88 size=23
-text "бесконечность. Имя ВСЕГДА с начала: луч OA." -7.2,1.38 size=23 color=teal
-arrow -6.5,-0.2 -1.2,-0.2 color=blue width=4
-point -6.5,-0.2 label="O" ldx=0 ldy=-0.45 color=yellow
-point -3.2,-0.2 label="A" ldx=0 ldy=-0.45 color=white
-text "Начало в O -> идёт через A -> дальше вечно" -3.9,-1.0 size=23 color=gray align=center
+heading "2. Аксиома принадлежности и логика пересечения прямых"
+box -7.5,1.25 7.5,2.85 color=blue
+text "АКСИОМА 1: Какова бы ни была прямая, существуют точки, принадлежащие этой прямой," 0,2.4 size=24 color=yellow align=center
+text "и точки, не принадлежащие ей. (Запись: A ∈ a — «A лежит на a»; B ∉ a — «B не лежит на a»)." 0,1.8 size=23 align=center
+line -6.5,0.3 0.5,0.3 color=blue width=4
+point -4.5,0.3 label="A" ldx=0 ldy=0.4 color=yellow
+& point -1.5,0.3 label="C" ldx=0 ldy=0.4 color=yellow
+& point -3.0,-0.8 label="B" ldx=0 ldy=-0.45 color=orange
+tex "a" 0.3,0.65 size=30 color=blue
+tex "A \in a,\ C \in a,\ B \notin a" 4.2,0.0 size=28 color=teal align=center
 pause
-box 0.2,1.15 7.5,2.85 color=blue
-text "ОТРЕЗОК: поставили 2 точки-стены (A и B)." 0.5,2.4 size=24 color=yellow
-text "Линия заперта между ними. Раз есть начало" 0.5,1.88 size=23
-text "и конец, появляется ДЛИНА (число в см, м)." 0.5,1.38 size=23 color=green
-line 1.3,-0.2 6.5,-0.2 color=green width=5
-point 1.3,-0.2 label="A" ldx=0 ldy=-0.45 color=white
-& point 6.5,-0.2 label="B" ldx=0 ldy=-0.45 color=white
-text "Отрезок AB (или BA — тут порядок не важен)" 3.9,-1.0 size=23 color=gray align=center
-pause
-box -7.5,-4.0 7.5,-1.65 color=yellow
-text "КАК РАБОТАЕТ ЛОГИКА СЛОЖЕНИЯ ОТРЕЗКОВ:" 0,-2.1 size=26 color=yellow align=center
-text "Если разрезать палку AB в точке C, то сумма кусков равна целой палке:  AC + CB = AB." 0,-2.75 size=24 align=center
-text "Отсюда обратный ход: чтобы найти один кусок, нужно из ЦЕЛОГО вычесть ИЗВЕСТНЫЙ кусок:  CB = AB - AC." 0,-3.4 size=23 color=teal align=center
+box -7.5,-3.95 7.5,-1.55 color=yellow
+text "АКСИОМА 2: Через любые две точки можно провести прямую, и только одну." 0,-2.0 size=25 color=yellow align=center
+text "ПЕРВОЕ ДОКАЗАТЕЛЬСТВО (Теорема о пересечении двух прямых):" 0,-2.6 size=24 color=teal align=center
+text "Докажем, что две разные прямые НЕ МОГУТ иметь две общие точки: если бы у них было 2 общие" 0,-3.15 size=22 align=center
+text "точки A и B, то через A и B проходили бы две прямые — а это запрещено Аксиомой 2!" 0,-3.65 size=22 align=center
 pause
 
-# 4 ── ПРАКТИКА 1: Пошаговая логика решения задач на отрезки
 clear
-heading "Практика № 1 · Учимся мыслить по шагам"
-text "Задача 1. Точка C лежит на отрезке AB. Весь отрезок AB = 18 см, кусок AC = 7 см. Найти BC." -7.4,2.45 size=24
-line -7.0,1.6 -1.5,1.6 color=white width=3
-point -7.0,1.6 label="A" ldx=0 ldy=-0.4 color=white
-& point -4.8,1.6 label="C" ldx=0 ldy=-0.4 color=yellow
-& point -1.5,1.6 label="B" ldx=0 ldy=-0.4 color=white
-pause
-text "Ход мысли: 1) Что целое? AB (18).  2) Что известно? Часть AC (7).  3) Вычитаем:" -7.4,0.85 size=23 color=teal
-tex "BC = 18 - 7 = 11\text{ см}" 4.5,1.6 size=32 color=yellow align=center
-pause
-text "Задача 2 (ловушка на внимательность!). На прямой лежат точки A, B, C." -7.4,-0.1 size=24 color=yellow
-text "Известно, что AB = 10 см, BC = 4 см. Чему равна длина отрезка AC?" -7.4,-0.65 size=24
-text "Стоп! В условии НЕ сказано, какая точка посередине. Значит, проверяем оба варианта:" -7.4,-1.2 size=23 color=gray
-pause
-line -7.0,-2.1 -2.0,-2.1 color=green width=3
-point -7.0,-2.1 label="A" ldx=0 ldy=-0.4 color=white
-& point -3.5,-2.1 label="B" ldx=0 ldy=-0.4 color=yellow
-& point -2.0,-2.1 label="C" ldx=0 ldy=-0.4 color=white
-text "Вариант 1: B между A и C." -1.3,-1.95 size=23 color=green
-text "Тогда AC — это целое: 10 + 4 = 14 см." -1.3,-2.45 size=23
-pause
-line -7.0,-3.4 -2.0,-3.4 color=blue width=3
-point -7.0,-3.4 label="A" ldx=0 ldy=-0.4 color=white
-& point -4.0,-3.4 label="C" ldx=0 ldy=-0.4 color=yellow
-& point -2.0,-3.4 label="B" ldx=0 ldy=-0.4 color=white
-text "Вариант 2: C между A и B." -1.3,-3.25 size=23 color=blue
-text "Тогда AB — целое, а AC часть: 10 - 4 = 6 см." -1.3,-3.75 size=23
-pause
-
-# 5 ── ПРАКТИКА 1: Алгебра внутри геометрии (метод частей / X)
-clear
-heading "Практика № 1 · Как переводить слова в уравнения (метод X)"
-text "Задача 3. Точка D делит отрезок AB (24 см) так, что AD в 3 раза длиннее DB. Найти AD и DB." -7.4,2.45 size=24
-line -6.8,1.1 0.2,1.1 color=white width=3
-point -6.8,1.1 label="A" ldx=0 ldy=-0.45 color=white
-& point -1.55,1.1 label="D" ldx=0 ldy=-0.45 color=yellow
-& point 0.2,1.1 label="B" ldx=0 ldy=-0.45 color=white
-text "3 части (3x)" -4.2,1.45 size=24 color=blue align=center
-text "1 часть (x)" -0.68,1.45 size=24 color=green align=center
-pause
-text "Алгоритм перевода с русского на математический:" -7.4,0.1 size=25 color=yellow
-text "Шаг 1. Самый маленький отрезок (DB) называем «одна порция» = x." -7.4,-0.5 size=23
-text "Шаг 2. Раз AD в 3 раза больше, в нём помещается 3 такие порции = 3x." -7.4,-1.05 size=23
-text "Шаг 3. Складываем все порции: вместе они дают весь отрезок AB (24 см)." -7.4,-1.6 size=23
-tex "3x + x = 24 \implies 4x = 24 \implies x = 24 : 4 = 6\text{ см (это DB)}" -7.4,-2.35 size=28 color=teal
-tex "AD = 3 \cdot 6 = 18\text{ см. Проверка: } 18 + 6 = 24\text{ (всё сошлось!)}" -7.4,-3.1 size=28 color=yellow
-pause
-
-# 6 ── Что такое угол на самом деле
-clear
-heading "Блок 2. Что такое угол? (Важнейшее понимание!)"
-box -7.5,0.9 7.5,2.85 color=yellow
-text "ОШИБКА НОВИЧКОВ: думать, что угол зависит от длины нарисованных палочек." 0,2.4 size=25 color=yellow align=center
-text "ПРАВДА: угол — это величина ПОВОРОТА одного луча относительно другого." 0,1.8 size=25 color=white align=center
-text "Представь стрелки часов или ножницы: насколько широко они раскрыты — это и есть градусы." 0,1.25 size=23 color=teal align=center
-pause
-line -6.8,-2.2 -4.8,-2.2 color=blue width=3
-& line -6.8,-2.2 -5.5,-0.6 color=blue width=3
-angle -6.8,-2.2 -4.8,-2.2 -5.5,-0.6 r=0.6 label="50^\circ" color=yellow
-text "Короткие лучи" -5.8,-2.8 size=23 color=gray align=center
-pause
-line -2.5,-2.5 2.5,-2.5 color=blue width=3
-& line -2.5,-2.5 0.8,1.2 color=blue width=3
-angle -2.5,-2.5 2.5,-2.5 0.8,1.2 r=0.6 label="50^\circ" color=yellow
-text "Длинные лучи — НО раскрытие (угол) ТО ЖЕ САМОЕ (50°)!" 0.2,-3.15 size=24 color=yellow align=center
-pause
-box 3.3,-2.5 7.4,0.3 color=blue
-text "Шкала измерения:" 5.35,-0.2 size=25 color=blue align=center
-text "Полный оборот = 360°" 5.35,-0.8 size=22 align=center
-text "Половина (прямая) = 180°" 5.35,-1.35 size=22 color=yellow align=center
-text "Четверть (прямой) = 90°" 5.35,-1.9 size=22 color=teal align=center
-pause
-
-# 7 ── 4 типа углов и биссектриса
-clear
-heading "Блок 2. Четыре эталона углов и биссектриса"
-line -7.2,0.6 -4.7,0.6 color=blue width=3
-& line -7.2,0.6 -5.3,2.2 color=blue width=3
-angle -7.2,0.6 -4.7,0.6 -5.3,2.2 r=0.6 color=yellow
-text "1. Острый" -5.9,-0.05 size=26 align=center
-text "Меньше 90°" -5.9,-0.6 size=23 color=gray align=center
-text "(не дошёл до угла)" -5.9,-1.05 size=21 color=gray align=center
-pause
-line -3.3,0.6 -1.0,0.6 color=blue width=3
-& line -3.3,0.6 -3.3,2.3 color=blue width=3
-rightangle -3.3,0.6 -1.0,0.6 -3.3,2.3 size=0.32 color=yellow
-text "2. Прямой" -2.2,-0.05 size=26 align=center
-text "Ровно 90°" -2.2,-0.6 size=23 color=yellow align=center
-text "(угол тетради/стены)" -2.2,-1.05 size=21 color=gray align=center
-pause
-line 1.5,0.6 3.8,0.6 color=blue width=3
-& line 1.5,0.6 0.1,2.2 color=blue width=3
-angle 1.5,0.6 3.8,0.6 0.1,2.2 r=0.55 color=yellow
-text "3. Тупой" 1.9,-0.05 size=26 align=center
-text "От 90° до 180°" 1.9,-0.6 size=23 color=gray align=center
-text "(перевалил за 90°)" 1.9,-1.05 size=21 color=gray align=center
-pause
-line 4.4,0.6 7.5,0.6 color=blue width=3
-point 5.95,0.6 label="O" ldx=0 ldy=-0.4 color=white
-angle 5.95,0.6 7.5,0.6 4.4,0.6 r=0.5 color=yellow
-text "4. Развёрнутый" 6.0,-0.05 size=26 align=center
-text "Ровно 180°" 6.0,-0.6 size=23 color=yellow align=center
-text "(раскрылся в прямую)" 6.0,-1.05 size=21 color=gray align=center
-pause
-box -7.5,-3.95 7.5,-1.65 color=teal
-text "БИССЕКТРИСА — это луч, который выходит из вершины и режет угол РОВНО ПОПОЛАМ." 0,-2.15 size=25 color=teal align=center
-text "Логика: если угол AOB = 80°, а OK — биссектриса, то два новых угла AOK и KOB равны по 80° : 2 = 40°." 0,-2.8 size=23 align=center
-text "И наоборот: если половина угла равна 35°, то весь угол равен 35° * 2 = 70°." 0,-3.4 size=23 color=yellow align=center
-pause
-
-# 8 ── Смежные и вертикальные углы: ДОКАЗАТЕЛЬСТВО логикой!
-clear
-heading "Блок 2. Смежные и вертикальные углы — почему они такие?"
-box -7.5,1.15 -0.2,2.85 color=blue
-text "СМЕЖНЫЕ УГЛЫ: стоят рядом на одной" -7.2,2.4 size=23 color=yellow
-text "прямой. Вместе они образуют развёрнутый" -7.2,1.88 size=23
-text "угол (180°). Поэтому:  α + β = 180°." -7.2,1.38 size=23 color=teal
-line -7.2,-0.7 -0.6,-0.7 color=white width=3
-line -4.2,-0.7 -2.2,0.8 color=blue width=3
-point -4.2,-0.7 label="O" ldx=0 ldy=-0.42 color=white
-angle -4.2,-0.7 -0.6,-0.7 -2.2,0.8 r=0.65 label="\alpha" color=yellow
-& angle -4.2,-0.7 -2.2,0.8 -7.2,-0.7 r=0.55 label="\beta" color=teal
-text "Если α = 50°, то β = 180° - 50° = 130°" -3.9,-1.65 size=23 color=yellow align=center
-pause
-box 0.2,1.15 7.5,2.85 color=blue
-text "ВЕРТИКАЛЬНЫЕ УГЛЫ: две прямые" 0.5,2.4 size=23 color=yellow
-text "пересеклись крест-накрест. Углы друг" 0.5,1.88 size=23
-text "напротив друга (1 и 2) ВСЕГДА РАВНЫ." 0.5,1.38 size=23 color=teal
-line 1.0,-0.9 6.8,0.8 color=white width=3
-& line 1.2,0.8 6.6,-0.9 color=white width=3
-angle 3.9,-0.05 6.8,0.8 6.6,-0.9 r=0.7 label="1" color=yellow
-& angle 3.9,-0.05 1.2,0.8 1.0,-0.9 r=0.7 label="2" color=yellow
-& angle 3.9,-0.05 1.2,0.8 6.8,0.8 r=0.5 label="3" color=teal
-text "Углы 1 и 2 всегда равны!" 3.9,-1.65 size=24 color=yellow align=center
-pause
-box -7.5,-3.95 7.5,-2.1 color=yellow
-text "ДОКАЗАТЕЛЬСТВО (почему угол 1 = углу 2, без линейки и транспортира):" 0,-2.55 size=24 color=yellow align=center
-text "Угол 1 смежный с углом 3 -> значит, угол 1 = 180° - угол 3." 0,-3.1 size=23 align=center
-text "Угол 2 ТОЖЕ смежный с углом 3 -> значит, угол 2 = 180° - угол 3. Раз формулы одинаковые, то угол 1 = углу 2!" 0,-3.62 size=22 color=teal align=center
-pause
-clear
-heading "Практика № 2 · Смежные, вертикальные и биссектриса"
-text "Задача 1. При пересечении двух прямых один из углов равен 72°. Найти остальные 3 угла." -7.4,2.45 size=24
-line -6.8,0.6 -2.4,1.7 color=white width=2
-& line -6.8,1.7 -2.4,0.6 color=white width=2
-angle -4.6,1.15 -2.4,1.7 -2.4,0.6 r=0.6 label="72^\circ" color=yellow
-pause
-text "Цепочка вывода: 1) Напротив 72° стоит вертикальный -> он тоже 72°." -1.8,1.45 size=23 color=teal
-text "2) Рядом на одной прямой стоит смежный -> 180° - 72° = 108°. Напротив него тоже 108°." -1.8,0.9 size=23 color=blue
-pause
-text "Задача 2 (с биссектрисой). Углы AOB и BOC — смежные. Угол AOB = 110°." -7.4,-0.15 size=24 color=yellow
-text "Луч OK — биссектриса угла AOB. Найти угол KOC." -7.4,-0.7 size=24
-line -6.8,-3.5 0.2,-3.5 color=white width=3
-line -3.3,-3.5 -5.4,-1.2 color=white width=3
-line -3.3,-3.5 -1.2,-1.4 color=teal width=3 dash=1
-point -6.6,-3.5 label="A" ldx=0 ldy=-0.4 color=white
-& point -3.3,-3.5 label="O" ldx=0 ldy=-0.4 color=white
-& point 0.0,-3.5 label="C" ldx=0 ldy=-0.4 color=white
-& point -5.4,-1.2 label="B" ldx=-0.3 ldy=0.2 color=white
-& point -1.2,-1.4 label="K" ldx=0.3 ldy=0.2 color=teal
-pause
-text "Смотрим на чертёж: из каких кусков состоит угол KOC? Из KOB и BOC!" 0.7,-1.45 size=23 color=gray
-text "1) Находим кусок KOB: OK делит AOB (110°) пополам -> 110° : 2 = 55°." 0.7,-2.05 size=23 color=teal
-text "2) Находим кусок BOC: он смежный с AOB (110°) -> 180° - 110° = 70°." 0.7,-2.65 size=23 color=blue
-text "3) Складываем куски: угол KOC = 55° + 70° = 125°." 0.7,-3.3 size=25 color=yellow
-pause
-clear
-heading "Блок 3. Параллельные прямые — эффект копирования"
+heading "3. Порядок точек на прямой (Аксиома «лежит между»)"
 box -7.5,1.35 7.5,2.85 color=blue
-text "Параллельные прямые (a ∥ b) идут строго в одном направлении и никогда не пересекутся." 0,2.4 size=25 color=yellow align=center
-text "Если перечеркнуть их третьей прямой c (секущей), то нижний перекрёсток станет ТОЧНОЙ КОПИЕЙ верхнего!" 0,1.75 size=23 color=teal align=center
-line -7.0,0.3 -0.5,0.3 color=blue width=4
-line -7.0,-1.9 -0.5,-1.9 color=blue width=4
-line -5.4,-2.9 -2.1,1.1 color=white width=3
-tex "a" -0.3,0.3 size=30 color=blue
-tex "b" -0.3,-1.9 size=30 color=blue
-tex "c" -1.9,1.1 size=30 color=white
-text "1" -3.3,0.65 size=23 color=gray
-& text "2" -2.4,0.55 size=23 color=gray
-& text "3" -2.7,-0.1 size=24 color=yellow
-& text "4" -3.6,-0.05 size=24 color=teal
-text "5" -5.1,-1.55 size=24 color=teal
-& text "6" -4.2,-1.55 size=24 color=yellow
-& text "7" -4.5,-2.25 size=23 color=gray
-& text "8" -5.4,-2.25 size=23 color=gray
+text "АКСИОМА 3: Из трёх точек на прямой одна и только одна лежит между двумя другими." 0,2.4 size=24 color=yellow align=center
+text "Кажется мелочью? Именно эта аксиома запрещает прямой замыкаться в кольцо!" 0,1.8 size=23 color=teal align=center
+line -6.5,0.4 0.5,0.4 color=white width=4
+point -5.5,0.4 label="A" ldx=0 ldy=-0.45 color=white
+& point -3.2,0.4 label="B" ldx=0 ldy=-0.45 color=yellow
+& point -0.5,0.4 label="C" ldx=0 ldy=-0.45 color=white
+text "Точка B лежит между A и C." 4.2,0.4 size=24 color=yellow align=center
 pause
-box 0.2,-3.8 7.5,1.0 color=yellow
-text "Запомни 3 пары названий (это язык задач):" 3.85,0.55 size=25 color=yellow align=center
-text "1. СООТВЕТСТВЕННЫЕ (на тех же местах):" 0.5,-0.1 size=23 color=teal
-text "   2 и 6; 1 и 5 -> ОНИ РАВНЫ (копия!)" 0.5,-0.6 size=23
-text "2. НАКРЕСТ ЛЕЖАЩИЕ (крест-накрест внутри):" 0.5,-1.3 size=23 color=yellow
-text "   3 и 5; 4 и 6 -> ОНИ РАВНЫ (как вертикальные)" 0.5,-1.8 size=23
-text "3. ОДНОСТОРОННИЕ (по одну сторону внутри):" 0.5,-2.5 size=23 color=orange
-text "   4 и 5; 3 и 6 -> В СУММЕ ДАЮТ 180°!" 0.5,-3.0 size=23
+box -7.5,-3.9 7.5,-0.9 color=orange
+text "КАК ПРОВЕРИТЬ, КАКАЯ ТОЧКА ПОСЕРЕДИНЕ, БЕЗ ЧЕРТЕЖА?" 0,-1.35 size=25 color=orange align=center
+text "Логика: самая длинная дистанция всегда между крайними точками!" 0,-1.95 size=24 align=center
+text "Пример: на прямой даны точки M, N, K. Известно: MN = 5, NK = 12, MK = 7." 0,-2.55 size=23 color=teal align=center
+text "Кто между кем? Самый большой отрезок NK = 12 -> значит, N и K по краям," 0,-3.15 size=23 align=center
+text "а точка M лежит строго между ними! (Проверка: 5 + 7 = 12 — сошлось!)." 0,-3.68 size=23 color=yellow align=center
+pause
+
+clear
+heading "4. Отрезок и Аксиома измерения длин"
+box -7.5,1.2 -0.2,2.85 color=blue
+text "ОПРЕДЕЛЕНИЕ ОТРЕЗКА:" -7.2,2.4 size=24 color=yellow
+text "Отрезок AB — это множество точек прямой," -7.2,1.88 size=23
+text "состоящее из точек A и B и всех точек," -7.2,1.38 size=23
+text "которые лежат МЕЖДУ ними." -7.2,0.88 size=23 color=teal
+pause
+box 0.2,1.2 7.5,2.85 color=yellow
+text "АКСИОМА ИЗМЕРЕНИЯ ОТРЕЗКОВ:" 0.5,2.4 size=24 color=yellow
+text "1. Каждый отрезок имеет длину > 0." 0.5,1.88 size=23
+text "2. Если точка C лежит на отрезке AB," 0.5,1.38 size=23
+text "то  AB = AC + CB." 0.5,0.88 size=25 color=green
+pause
+line -6.5,-0.5 6.5,-0.5 color=white width=4
+point -6.5,-0.5 label="A" ldx=0 ldy=-0.45 color=white
+& point -1.5,-0.5 label="C" ldx=0 ldy=-0.45 color=yellow
+& point 6.5,-0.5 label="B" ldx=0 ldy=-0.45 color=white
+text "AC (левая часть)" -4.0,-0.15 size=23 color=blue align=center
+text "CB (правая часть)" 2.5,-0.15 size=23 color=green align=center
+box -7.5,-3.95 7.5,-1.5 color=teal
+text "ДВА СЛЕДСТВИЯ ДЛЯ ЗАДАЧ:" 0,-1.95 size=25 color=teal align=center
+text "• Целый отрезок ВСЕГДА строго больше любой своей части (AB > AC и AB > CB)." 0,-2.6 size=23 align=center
+text "• Если для трёх точек A, B, C выполняется AB + BC = AC, то точка B ГАРАНТИРОВАННО" 0,-3.2 size=23 align=center
+text "  лежит на отрезке AC (критерий принадлежности точки отрезку!)." 0,-3.7 size=23 color=yellow align=center
+pause
+
+clear
+heading "5. Середина отрезка и расстояние между серединами (Теорема!)"
+text "Докажем красивую теорему, которую используют в олимпиадных задачах:" 0,2.5 size=24 color=gray align=center
+text "«Точка C лежит на отрезке AB. M — середина AC, K — середина CB. Чему равно MK?»" 0,1.95 size=24 color=yellow align=center
+line -6.8,0.6 6.8,0.6 color=white width=4
+point -6.8,0.6 label="A" ldx=0 ldy=-0.45 color=white
+& point -4.3,0.6 label="M" ldx=0 ldy=-0.45 color=teal
+& point -1.8,0.6 label="C" ldx=0 ldy=-0.45 color=yellow
+& point 2.5,0.6 label="K" ldx=0 ldy=-0.45 color=blue
+& point 6.8,0.6 label="B" ldx=0 ldy=-0.45 color=white
+tick -6.8,0.6 -4.3,0.6 n=1 color=teal
+& tick -4.3,0.6 -1.8,0.6 n=1 color=teal
+& tick -1.8,0.6 2.5,0.6 n=2 color=blue
+& tick 2.5,0.6 6.8,0.6 n=2 color=blue
+pause
+box -7.5,-3.9 7.5,-0.5 color=yellow
+text "ВЫВОД В ОБЩЕМ ВИДЕ (через буквы, без конкретных чисел):" 0,-0.95 size=25 color=yellow align=center
+text "1. Отрезок MK состоит из двух кусков: MC и CK. Значит:   MK = MC + CK." 0,-1.55 size=23 align=center
+text "2. Но M — середина AC, поэтому MC = 0,5 · AC." 0,-2.15 size=23 color=teal align=center
+text "3. А K — середина CB, поэтому CK = 0,5 · CB." 0,-2.75 size=23 color=blue align=center
+text "4. Подставляем и выносим 0,5 за скобку:   MK = 0,5 · AC + 0,5 · CB = 0,5 · (AC + CB) = 0,5 · AB!" 0,-3.4 size=23 color=yellow align=center
+pause
+
+clear
+heading "6. ПРАКТИКА 1.1 · Задачи на отрезки (Уровень: База -> Профи)"
+text "Задача 1. На прямой лежат точки A, B, C. AB = 15 см, BC = 23 см, AC = 8 см. Какая точка между двумя?" -7.4,2.45 size=23
+pause
+text "Решение: самый большой отрезок BC = 23 см. Проверяем сумму меньших: 15 + 8 = 23 см." -7.4,1.85 size=23 color=teal
+text "Раз AB + AC = BC, то точка A лежит строго между B и C." -7.4,1.35 size=23 color=yellow
+pause
+text "Задача 2. Точка C лежит на отрезке AB = 34 см. Найти расстояние между серединами AC и CB." -7.4,0.45 size=23
+pause
+text "Решение: по только что доказанной теореме MK = 0,5 · AB = 34 : 2 = 17 см (положение C не важно!)." -7.4,-0.15 size=23 color=teal
+pause
+text "Задача 3 (олимпиадная ловушка). Точки A, B, C лежат на одной прямой. AB = 20 см, BC = 6 см." -7.4,-1.05 size=23 color=orange
+text "Найти расстояние между серединами отрезков AB и BC. (Внимание: сколько случаев?)" -7.4,-1.6 size=23
+pause
+text "Случай 1 (B между A и C): M — середина AB (MB = 10), K — середина BC (BK = 3). MK = 10 + 3 = 13 см." -7.4,-2.35 size=22 color=green
+text "Случай 2 (C между A и B): M — середина AB (MB = 10), K — середина BC (BK = 3). MK = 10 - 3 = 7 см." -7.4,-2.95 size=22 color=blue
+box -7.4,-3.95 7.4,-3.35 color=yellow
+text "Ответ: 13 см или 7 см. (Всегда проверяй порядок точек, если он не задан в условии!)" 0,-3.65 size=23 color=yellow align=center
+pause
+
+clear
+heading "7. ПРАКТИКА 1.2 · Метод уравнений и отношений на отрезках"
+text "Задача 4. Отрезок AB = 45 см разделён точками C и D в отношении AC : CD : DB = 2 : 3 : 4." -7.4,2.45 size=23
+text "Найти длину отрезка, соединяющего середины крайних частей (AC и DB)." -7.4,1.9 size=23
+line -6.8,0.7 6.8,0.7 color=white width=3
+point -6.8,0.7 label="A" ldx=0 ldy=-0.4 color=white
+& point -5.3,0.7 label="M" ldx=0 ldy=-0.4 color=teal
+& point -3.8,0.7 label="C" ldx=0 ldy=-0.4 color=white
+& point 0.7,0.7 label="D" ldx=0 ldy=-0.4 color=white
+& point 3.75,0.7 label="K" ldx=0 ldy=-0.4 color=teal
+& point 6.8,0.7 label="B" ldx=0 ldy=-0.4 color=white
+text "2x" -5.3,1.05 size=23 color=blue align=center
+text "3x" -1.55,1.05 size=23 color=yellow align=center
+text "4x" 3.75,1.05 size=23 color=green align=center
+pause
+text "Шаг 1. Пусть 1 часть = x см. Тогда AC = 2x, CD = 3x, DB = 4x." -7.4,-0.3 size=23
+text "Шаг 2. Весь отрезок: 2x + 3x + 4x = 45   =>   9x = 45   =>   x = 5 см." -7.4,-0.9 size=23 color=teal
+text "Шаг 3. Находим длины: AC = 10 см, CD = 15 см, DB = 20 см." -7.4,-1.5 size=23
+text "Шаг 4. Ищем MK: это половина AC (5 см) + весь CD (15 см) + половина DB (10 см)." -7.4,-2.1 size=23 color=yellow
+box -7.4,-3.8 7.4,-2.65 color=yellow
+text "MK = 5 + 15 + 10 = 30 см.   (Или через X: x + 3x + 2x = 6x = 6 · 5 = 30 см!)" 0,-3.22 size=25 color=yellow align=center
+pause
+
+clear
+heading "8. Полуплоскости, луч и строгое определение угла"
+box -7.5,1.0 -0.2,2.85 color=blue
+text "АКСИОМА РАЗБИЕНИЯ ПЛОСКОСТИ:" -7.2,2.4 size=23 color=yellow
+text "Любая прямая a делит плоскость на две" -7.2,1.88 size=23
+text "полуплоскости. Если точки A и B в разных" -7.2,1.38 size=23
+text "полуплоскостях, отрезок AB пересечёт a." -7.2,0.88 size=23 color=teal
+line -6.8,-1.2 -0.8,-1.2 color=blue width=4
+point -5.2,-0.1 label="A" ldx=-0.3 ldy=0.2 color=white
+& point -2.4,-2.3 label="B" ldx=0.3 ldy=-0.2 color=white
+line -5.2,-0.1 -2.4,-2.3 color=yellow dash=1
+pause
+box 0.2,1.0 7.5,2.85 color=yellow
+text "ЛУЧ И УГОЛ:" 0.5,2.4 size=24 color=yellow
+text "Луч OA — точка O и часть прямой по" 0.5,1.88 size=23
+text "одну сторону от O. Два луча, лежащие на" 0.5,1.38 size=23
+text "одной прямой в разные стороны — ДОПОЛНИТЕЛЬНЫЕ." 0.5,0.88 size=21 color=teal
+line 1.0,-1.2 6.8,-1.2 color=white width=3
+point 3.9,-1.2 label="O" ldx=0 ldy=-0.4 color=yellow
+point 1.6,-1.2 label="A" ldx=0 ldy=-0.4 color=white
+& point 6.2,-1.2 label="B" ldx=0 ldy=-0.4 color=white
+text "OA и OB — дополнительные лучи" 3.9,-2.1 size=22 color=gray align=center
+pause
+box -7.5,-3.95 7.5,-2.7 color=teal
+text "УГОЛ — это геометрическая фигура, состоящая из точки (вершины) и двух лучей (сторон), исходящих из неё." 0,-3.12 size=22 color=white align=center
+text "Развёрнутый угол — угол, стороны которого являются дополнительными лучами (ровно 180°)." 0,-3.62 size=22 color=yellow align=center
 pause
 clear
-heading "Блок 3. Железная логика: Острый против Тупого"
-box -7.5,0.7 7.5,2.85 color=teal
-text "ЛАЙФХАК: когда прямые параллельны (и секущая не под 90°), все 8 углов делятся на 2 банды:" 0,2.4 size=24 color=yellow align=center
-text "• 4 ОСТРЫХ угла (все они РАВНЫ друг другу, например по 60°)." 0,1.75 size=24 color=teal align=center
-text "• 4 ТУПЫХ угла (все они тоже РАВНЫ друг другу, и каждый = 180° - острый = 120°)." 0,1.15 size=24 color=orange align=center
+heading "9. Внутренняя область угла и Аксиома измерения углов"
+box -7.5,1.15 -0.2,2.85 color=blue
+text "АКСИОМА ИЗМЕРЕНИЯ УГЛОВ:" -7.2,2.4 size=24 color=yellow
+text "1. Каждый угол имеет градусную меру > 0." -7.2,1.88 size=23
+text "2. Если луч OC проходит МЕЖДУ сторонами" -7.2,1.38 size=23
+text "угла AOB, то  ∠AOB = ∠AOC + ∠COB." -7.2,0.88 size=24 color=teal
+line 0.8,-1.2 6.8,-1.2 color=white width=4
+& line 0.8,-1.2 4.5,2.3 color=white width=4
+line 0.8,-1.2 6.2,0.9 color=yellow width=3
+point 0.8,-1.2 label="O" ldx=-0.3 ldy=-0.3 color=white
+& point 6.5,-1.2 label="B" ldx=0 ldy=-0.4 color=white
+& point 4.3,2.1 label="A" ldx=-0.3 ldy=0.2 color=white
+& point 6.0,0.8 label="C" ldx=0.3 ldy=0.1 color=yellow
+angle 0.8,-1.2 6.8,-1.2 6.2,0.9 r=1.2 label="\beta" color=blue
+& angle 0.8,-1.2 6.2,0.9 4.5,2.3 r=1.4 label="\alpha" color=teal
 pause
-text "Проверка логики на примере:" -7.4,-0.05 size=26 color=yellow
-text "Пусть один из углов равен 54° (он острый)." -7.4,-0.65 size=24
-text "• Любой другой острый угол (накрест лежащий, соответственный или вертикальный) = ТОЖЕ 54°." -7.4,-1.25 size=23 color=teal
-text "• Любой тупой угол (односторонний или смежный) = 180° - 54° = 126°." -7.4,-1.85 size=23 color=orange
-pause
-box -7.5,-3.9 7.5,-2.45 color=blue
-text "ОБРАТНЫЙ ХОД (Признаки параллельности):" 0,-2.85 size=25 color=blue align=center
-text "Если ты НЕ знаешь, параллельны ли прямые, но посчитал углы и увидел, что накрест лежащие равны" 0,-3.35 size=22 align=center
-text "(или односторонние в сумме дают 180°) — значит, прямые ГАРАНТИРОВАННО ПАРАЛЛЕЛЬНЫ!" 0,-3.75 size=22 color=yellow align=center
-pause
-clear
-heading "Практика № 3 · Решаем задачи на параллельные прямые"
-text "Задача 1. Прямые a и b параллельны. Односторонние углы при секущей относятся как 2 : 7." -7.4,2.45 size=24
-text "Найти оба угла." -7.4,1.9 size=24
-pause
-text "Логика: 1) Углы односторонние при a ∥ b -> по правилу их СУММА = 180°." -7.4,1.15 size=23 color=orange
-text "2) Отношение 2 : 7 означает: первый угол = 2 части (2x), второй = 7 частей (7x)." -7.4,0.6 size=23
-tex "2x + 7x = 180^\circ \implies 9x = 180^\circ \implies x = 20^\circ\text{ (одна часть)}" -7.4,-0.15 size=28 color=teal
-tex "\text{Первый угол} = 2 \cdot 20^\circ = 40^\circ,\quad \text{второй угол} = 7 \cdot 20^\circ = 140^\circ." -7.4,-0.9 size=28 color=yellow
-pause
-text "Задача 2 (доказательство параллельности). При пересечении прямых a и b секущей c" -7.4,-1.95 size=24 color=blue
-text "внутренний угол равен 65°, а внутренний односторонний с ним равен 115°. Параллельны ли a и b?" -7.4,-2.5 size=23
-pause
-text "Логика: проверяем правило односторонних углов. Складываем: 65° + 115° = 180°." -7.4,-3.15 size=23 color=teal
-text "Вывод: раз сумма односторонних углов равна 180°, то прямые a и b ПАРАЛЛЕЛЬНЫ (a ∥ b)." -7.4,-3.7 size=24 color=yellow
+box -7.5,-3.9 7.5,-1.7 color=yellow
+text "КАК РАБОТАЕТ ЛОГИКА ДЕЛЕНИЯ УГЛА:" 0,-2.15 size=25 color=yellow align=center
+text "• Луч OC делит угол AOB на две части: α и β. Весь угол равен α + β." 0,-2.75 size=23 align=center
+text "• Чтобы найти неизвестную часть, из ЦЕЛОГО угла вычитаем ИЗВЕСТНУЮ часть: α = ∠AOB - β." 0,-3.35 size=23 color=teal align=center
 pause
 clear
-heading "Блок 4. Почему сумма углов ЛЮБОГО треугольника = 180°?"
-text "Это не магия — это прямое следствие из параллельных прямых! Смотри на чертёж:" 0,2.5 size=24 color=gray align=center
-tri -6.5,-2.2 -3.5,0.6 -0.5,-2.2 names="A,B,C" color=white
-angle -6.5,-2.2 -3.5,0.6 -0.5,-2.2 r=0.55 label="1" color=yellow
-& angle -3.5,0.6 -6.5,-2.2 -0.5,-2.2 r=0.55 label="2" color=teal
-& angle -0.5,-2.2 -3.5,0.6 -6.5,-2.2 r=0.55 label="3" color=orange
+heading "10. ПРАКТИКА 2.1 · Лучи внутри угла (Ловушки на расположение)"
+text "Задача 1. Угол AOB = 120°. Луч OC делит его так, что ∠AOC на 30° больше ∠COB. Найти эти углы." -7.4,2.45 size=23
 pause
-line -6.5,0.6 -0.5,0.6 color=blue width=3 dash=1
-tex "a \parallel AC" -0.3,0.6 size=26 color=blue
-angle -3.5,0.6 -6.5,0.6 -6.5,-2.2 r=0.65 label="4" color=yellow
-& angle -3.5,0.6 -0.5,-2.2 -0.5,0.6 r=0.65 label="5" color=orange
+text "Решение: пусть меньший угол ∠COB = x, тогда больший ∠AOC = x + 30°." -7.4,1.85 size=23
+text "x + (x + 30°) = 120°   =>   2x = 90°   =>   x = 45° (∠COB),   ∠AOC = 45° + 30° = 75°." -7.4,1.3 size=24 color=teal
 pause
-box 0.5,-3.3 7.5,1.8 color=yellow
-text "Пошаговое доказательство:" 4.0,1.35 size=26 color=yellow align=center
-text "1. Проведём через вершину B" 0.8,0.65 size=23
-text "   прямую a ∥ основанию AC." 0.8,0.15 size=23
-text "2. Угол 4 = углу 1 (накрест лежащие" 0.8,-0.5 size=23 color=yellow
-text "   при параллельных a и AC)." 0.8,-1.0 size=23 color=yellow
-text "3. Угол 5 = углу 3 (тоже накрест" 0.8,-1.65 size=23 color=orange
-text "   лежащие при a и AC)." 0.8,-2.15 size=23 color=orange
-text "4. Вверху углы 4 + 2 + 5 лежат" 0.8,-2.75 size=23 color=teal
-text "   на прямой (180°) => 1 + 2 + 3 = 180°!" 0.8,-3.2 size=23 color=teal
+text "Задача 2 (два случая!). Даны углы ∠AOB = 80° и ∠BOC = 35°. Найти угол AOC." -7.4,0.35 size=23 color=orange
+text "Внимание! Не сказано, где идёт луч OC — внутри угла AOB или снаружи!" -7.4,-0.2 size=23 color=gray
+pause
+line -6.8,-3.5 -2.2,-3.5 color=white width=3
+& line -6.8,-3.5 -5.8,-1.0 color=white width=3
+line -6.8,-3.5 -3.5,-1.6 color=teal width=3
+text "Случай 1: луч OC внутри ∠AOB." -1.5,-1.6 size=23 color=teal
+text "Тогда ∠AOC = 80° - 35° = 45°." -1.5,-2.15 size=23
+pause
+line -6.8,-3.5 -2.2,-2.2 color=blue width=3
+text "Случай 2: луч OC снаружи ∠AOB." -1.5,-2.95 size=23 color=blue
+text "Тогда ∠AOC = 80° + 35° = 115°." -1.5,-3.5 size=23
 pause
 clear
-heading "Блок 4. Особые треугольники и 3 главные линии"
-tri -7.0,0.4 -5.8,2.3 -4.6,0.4 names="A,B,C" ticks="1,1,1" color=blue
-text "Равносторонний" -5.8,-0.2 size=24 align=center
-text "Все стороны равны." -5.8,-0.7 size=21 color=gray align=center
-text "Углы: 180°:3 = по 60°" -5.8,-1.15 size=21 color=yellow align=center
+heading "11. Биссектриса угла и угол между биссектрисами (Теорема!)"
+text "Докажем для углов ту же фундаментальную теорему, что мы доказали для отрезков:" 0,2.5 size=24 color=gray align=center
+text "«Луч OC лежит внутри ∠AOB. OM — биссектриса ∠AOC, OK — биссектриса ∠COB. Найти ∠MOK.»" 0,1.95 size=23 color=yellow align=center
+line -6.5,-1.5 1.5,-1.5 color=white width=4
+& line -6.5,-1.5 -3.5,1.5 color=white width=4
+line -6.5,-1.5 0.5,0.6 color=yellow width=3
+line -6.5,-1.5 -5.4,1.3 color=teal width=2 dash=1
+& line -6.5,-1.5 1.3,-0.5 color=blue width=2 dash=1
+point -6.5,-1.5 label="O" ldx=-0.3 ldy=-0.3 color=white
+& point -3.5,1.5 label="A" ldx=-0.2 ldy=0.3 color=white
+& point -5.4,1.3 label="M" ldx=-0.2 ldy=0.3 color=teal
+& point 0.5,0.6 label="C" ldx=0.3 ldy=0.1 color=yellow
+& point 1.3,-0.5 label="K" ldx=0.3 ldy=-0.1 color=blue
+& point 1.5,-1.5 label="B" ldx=0 ldy=-0.4 color=white
 pause
-tri -3.3,0.4 -2.1,2.4 -0.9,0.4 names="A,B,C" ticks="1,1,0" color=teal
-text "Равнобедренный" -2.1,-0.2 size=24 align=center
-text "2 боковые стороны равны." -2.1,-0.7 size=21 color=gray align=center
-text "Углы при основании РАВНЫ!" -2.1,-1.15 size=21 color=teal align=center
-pause
-tri 0.5,2.4 0.5,0.4 3.3,0.4 names="A,B,C" color=orange
-rightangle 0.5,0.4 0.5,2.4 3.3,0.4 size=0.28 color=yellow
-text "Прямоугольный" 1.9,-0.2 size=24 align=center
-text "Один угол = 90°." 1.9,-0.7 size=21 color=gray align=center
-text "Сумма острых = 90°" 1.9,-1.15 size=21 color=orange align=center
-pause
-box -7.5,-3.95 7.5,-1.65 color=yellow
-text "НЕ ПУТАЙ 3 отрезка внутри треугольника (у каждого своя работа):" 0,-2.05 size=24 color=yellow align=center
-text "1. МЕДИАНА: идёт в СЕРЕДИНУ противоположной стороны (делит сторону пополам)." 0,-2.6 size=23 align=center
-text "2. БИССЕКТРИСА: делит УГОЛ вершины пополам." 0,-3.1 size=23 color=teal align=center
-text "3. ВЫСОТА: падает на сторону строго под углом 90° (перпендикуляр)." 0,-3.6 size=23 color=blue align=center
+box -7.5,-3.95 7.5,-1.95 color=yellow
+text "ДОКАЗАТЕЛЬСТВО:  ∠MOK = ∠MOC + ∠COK = 0,5 · ∠AOC + 0,5 · ∠COB = 0,5 · (∠AOC + ∠COB) = 0,5 · ∠AOB." 0,-2.45 size=22 color=yellow align=center
+text "Угол между биссектрисами двух соседних углов ВСЕГДА равен половине всего угла (даже если не даны части!)." 0,-3.1 size=22 color=teal align=center
+text "Пример: если ∠AOB = 148°, а луч OC проведён как угодно внутри, то угол между биссектрисами = 148° : 2 = 74°!" 0,-3.65 size=21 align=center
 pause
 clear
-heading "Блок 4. Почему катет против 30° равен половине гипотенузы?"
-text "Многие это зубрят, но логика элементарна: просто приложим рядом такой же треугольник!" 0,2.5 size=23 color=gray align=center
-tri -6.5,-2.2 -6.5,1.2 -4.5,-2.2 names="C,A,B" color=blue
-rightangle -6.5,-2.2 -6.5,1.2 -4.5,-2.2 size=0.25 color=white
-angle -4.5,-2.2 -6.5,1.2 -6.5,-2.2 r=0.65 label="30^\circ" color=yellow
-angle -6.5,1.2 -4.5,-2.2 -6.5,-2.2 r=0.55 label="60^\circ" color=teal
+heading "12. Смежные углы: определение и строгое доказательство свойства"
+box -7.5,1.15 -0.2,2.85 color=blue
+text "ОПРЕДЕЛЕНИЕ:" -7.2,2.4 size=24 color=yellow
+text "Два угла называются смежными, если у них" -7.2,1.88 size=23
+text "одна сторона общая, а две другие являются" -7.2,1.38 size=23
+text "дополнительными лучами." -7.2,0.88 size=23 color=teal
+line -7.2,-1.1 -0.6,-1.1 color=white width=4
+line -4.2,-1.1 -2.0,0.8 color=blue width=4
+point -4.2,-1.1 label="O" ldx=0 ldy=-0.42 color=white
+& point -7.0,-1.1 label="A" ldx=0 ldy=-0.42 color=white
+& point -0.8,-1.1 label="B" ldx=0 ldy=-0.42 color=white
+& point -2.0,0.8 label="C" ldx=0.2 ldy=0.2 color=blue
+angle -4.2,-1.1 -0.6,-1.1 -2.0,0.8 r=0.65 label="\beta" color=yellow
+& angle -4.2,-1.1 -2.0,0.8 -7.2,-1.1 r=0.55 label="\alpha" color=teal
 pause
-line -6.5,1.2 -8.5,-2.2 color=blue width=2 dash=1
-& line -8.5,-2.2 -6.5,-2.2 color=blue width=2 dash=1
-point -8.5,-2.2 label="D" ldx=-0.3 ldy=-0.3 color=gray
-angle -8.5,-2.2 -6.5,1.2 -6.5,-2.2 r=0.65 label="30^\circ" color=yellow
-& angle -6.5,1.2 -8.5,-2.2 -6.5,-2.2 r=0.55 label="60^\circ" color=teal
+box 0.2,-1.8 7.5,2.85 color=yellow
+text "ТЕОРЕМА О СМЕЖНЫХ УГЛАХ:" 3.85,2.35 size=25 color=yellow align=center
+text "Сумма смежных углов равна 180°." 3.85,1.75 size=24 align=center
+text "ДОКАЗАТЕЛЬСТВО:" 3.85,1.05 size=23 color=teal align=center
+text "1. Лучи OA и OB дополнительные," 0.5,0.45 size=22
+text "   значит, ∠AOB — развёрнутый (180°)." 0.5,-0.05 size=22
+text "2. Луч OC делит ∠AOB на два угла:" 0.5,-0.6 size=22
+text "   ∠AOC и ∠COB. По аксиоме:" 0.5,-1.1 size=22
+text "   ∠AOC + ∠COB = ∠AOB = 180°." 0.5,-1.6 size=23 color=yellow
 pause
-box -3.2,-3.2 7.5,1.6 color=yellow
-text "Смотри, что получилось (большой △ABD):" 2.15,1.15 size=25 color=yellow align=center
-text "1. В △ABC: угол C = 90°, угол B = 30°," -2.9,0.5 size=23
-text "   значит, верхний угол A = 180° - 90° - 30° = 60°." -2.9,0.0 size=23
-text "2. Приложили копию слева: левый угол D = 30°," -2.9,-0.6 size=23 color=teal
-text "   правый B = 30°, а верхний A = 60° + 60° = 120°." -2.9,-1.1 size=23 color=teal
-text "   Стоп: углы 30°, 30° и 120° — равнобедренный (DA=AB)," -2.9,-1.65 size=23 color=yellow
-text "   а если отразить по катету AC, получим 60°, 60°, 60°!" -2.9,-2.15 size=23 color=yellow
-text "3. В равностороннем △ все стороны равны, а наш катет" -2.9,-2.75 size=23 color=orange
-text "   является ровно половиной стороны -> CB = 1/2 AB!" -2.9,-3.2 size=23 color=orange
-pause
-clear
-heading "Блок 4. Как доказать, что два треугольника абсолютно одинаковы?"
-text "Чтобы не накладывать треугольники друг на друга, достаточно проверить ОДНУ из 3 троек совпадений:" 0,2.5 size=23 color=gray align=center
-box -7.5,-0.5 -2.7,2.0 color=blue
-text "I. С-У-С" -5.1,1.55 size=27 color=yellow align=center
-text "(Сторона-Угол-Сторона)" -5.1,1.0 size=21 color=teal align=center
-text "2 стороны и угол" -5.1,0.35 size=22 align=center
-text "СТРОГО МЕЖДУ" -5.1,-0.1 size=22 color=yellow align=center
-text "ними равны." -5.1,-0.55 size=22 align=center
-pause
-box -2.4,-0.5 2.4,2.0 color=blue
-text "II. У-С-У" 0,1.55 size=27 color=yellow align=center
-text "(Угол-Сторона-Угол)" 0,1.0 size=21 color=teal align=center
-text "1 сторона и 2 угла," 0,0.35 size=22 align=center
-text "которые ПРИЛЕЖАТ" 0,-0.1 size=22 color=yellow align=center
-text "к её концам, равны." 0,-0.55 size=22 align=center
-pause
-box 2.7,-0.5 7.5,2.0 color=blue
-text "III. С-С-С" 5.1,1.55 size=27 color=yellow align=center
-text "(Сторона-Сторона-Сторона)" 5.1,1.0 size=20 color=teal align=center
-text "Все три стороны" 5.1,0.35 size=22 align=center
-text "одного равны трём" 5.1,-0.1 size=22 align=center
-text "сторонам другого." 5.1,-0.55 size=22 align=center
-pause
-box -7.5,-3.9 7.5,-1.1 color=yellow
-text "ПОДСКАЗКА ДЛЯ ЗАДАЧ (где брать «спрятанные» равные элементы?):" 0,-1.55 size=24 color=yellow align=center
-text "1. Если у треугольников есть ОБЩАЯ сторона — она автоматически равна сама себе!" 0,-2.15 size=23 align=center
-text "2. Если стороны пересекаются крестиком — ищи ВЕРТИКАЛЬНЫЕ углы (они равны!)." 0,-2.75 size=23 color=teal align=center
-text "3. Если есть параллельные прямые — ищи НАКРЕСТ ЛЕЖАЩИЕ углы (они равны!)." 0,-3.35 size=23 color=blue align=center
+box -7.5,-3.95 7.5,-2.25 color=teal
+text "ВАЖНЫЕ СЛЕДСТВИЯ (экономим время в задачах):" 0,-2.65 size=24 color=teal align=center
+text "1. Если два угла равны, то и смежные с ними углы тоже равны (180° - α = 180° - α)." 0,-3.2 size=22 align=center
+text "2. Угол, смежный с острым (<90°), всегда тупой (>90°). Смежный с прямым (90°) — прямой (90°)." 0,-3.7 size=22 color=yellow align=center
 pause
 clear
-heading "Практика № 4 · Равнобедренный треугольник (логика случаев)"
-text "Задача 1. В равнобедренном треугольнике один из углов равен 100°. Найти остальные два угла." -7.4,2.45 size=24
-tri -6.8,-0.4 -5.2,1.3 -3.6,-0.4 names="A,B,C" ticks="1,1,0" color=blue
-angle -5.2,1.3 -6.8,-0.4 -3.6,-0.4 r=0.45 label="100^\circ" color=yellow
+heading "13. Биссектрисы смежных углов (Ключевая олимпиадная теорема!)"
+text "Что будет, если провести биссектрисы обоих смежных углов? Считаем по нашей теореме из шага 11:" 0,2.5 size=23 color=gray align=center
+line -6.8,-1.5 2.2,-1.5 color=white width=4
+line -2.3,-1.5 -0.3,1.2 color=white width=3
+line -2.3,-1.5 -4.9,0.5 color=teal width=3 dash=1
+& line -2.3,-1.5 0.5,0.4 color=blue width=3 dash=1
+rightangle -2.3,-1.5 -4.9,0.5 0.5,0.4 size=0.35 color=yellow
+point -2.3,-1.5 label="O" ldx=0 ldy=-0.4 color=white
+& point -4.9,0.5 label="M" ldx=-0.3 ldy=0.2 color=teal
+& point 0.5,0.4 label="K" ldx=0.3 ldy=0.2 color=blue
+& point -0.3,1.2 label="C" ldx=0 ldy=0.3 color=white
 pause
-text "Логика: может ли угол 100° быть при основании?" -2.8,1.35 size=23 color=yellow
-text "Нет! Углы при основании равны: 100° + 100° = 200° > 180° (невозможно)." -2.8,0.8 size=22 color=gray
-text "Значит, 100° — это угол при вершине B! На два равных угла A и C остаётся:" -2.8,0.25 size=22
-tex "\angle A = \angle C = (180^\circ - 100^\circ) : 2 = 80^\circ : 2 = 40^\circ" -2.8,-0.45 size=26 color=teal
-pause
-text "Задача 2. Периметр равнобедренного треугольника = 32 см, а основание = 12 см. Найти боковую сторону." -7.4,-1.55 size=23
-pause
-text "Логика: периметр — сумма всех 3 сторон. У равнобедренного две боковые равны (назовём их по x)." -7.4,-2.15 size=22 color=gray
-tex "x + x + 12 = 32 \implies 2x = 32 - 12 \implies 2x = 20 \implies x = 10\text{ см.}" -7.4,-2.9 size=28 color=yellow
-pause
-clear
-heading "Практика № 4 · Как оформлять и решать доказательство"
-text "Задача 3. Отрезки AB и CD пересекаются в точке O так, что AO = OB и CO = OD." -7.4,2.45 size=24
-text "Доказать, что треугольник AOC равен треугольнику BOD." -7.4,1.9 size=24 color=yellow
-line -6.5,1.0 -2.5,-1.5 color=white width=3
-& line -6.5,-1.5 -2.5,1.0 color=white width=3
-& line -6.5,1.0 -6.5,-1.5 color=blue width=3
-& line -2.5,1.0 -2.5,-1.5 color=blue width=3
-point -6.5,1.0 label="A" ldx=-0.3 ldy=0.2 color=white
-& point -6.5,-1.5 label="C" ldx=-0.3 ldy=-0.3 color=white
-& point -2.5,1.0 label="D" ldx=0.3 ldy=0.2 color=white
-& point -2.5,-1.5 label="B" ldx=0.3 ldy=-0.3 color=white
-& point -4.5,-0.25 label="O" ldx=0 ldy=0.4 color=yellow
-tick -6.5,1.0 -4.5,-0.25 n=1 color=yellow
-& tick -4.5,-0.25 -2.5,-1.5 n=1 color=yellow
-& tick -6.5,-1.5 -4.5,-0.25 n=2 color=teal
-& tick -4.5,-0.25 -2.5,1.0 n=2 color=teal
-pause
-text "Алгоритм доказательства (ищем 3 совпадения):" -1.5,1.1 size=25 color=yellow
-text "1. AO = OB (дано в условии — 1-я сторона)." -1.5,0.5 size=23
-text "2. CO = OD (дано в условии — 2-я сторона)." -1.5,-0.05 size=23
-text "3. Смотрим на угол между ними при точке O:" -1.5,-0.6 size=23 color=teal
-text "   угол AOC = углу BOD (как вертикальные!)." -1.5,-1.15 size=23 color=teal
-box -7.4,-3.5 7.4,-2.1 color=yellow
-text "ВЫВОД: сработал I признак (Сторона — Угол между ними — Сторона)." 0,-2.55 size=24 color=yellow align=center
-text "Следовательно, △AOC = △BOD. Что и требовалось доказать!" 0,-3.1 size=24 color=teal align=center
+box -7.5,-3.95 7.5,-1.95 color=yellow
+text "ТЕОРЕМА: Угол между биссектрисами смежных углов ВСЕГДА равен 90° (они перпендикулярны!)." 0,-2.45 size=24 color=yellow align=center
+text "Доказательство: α + β = 180°. Биссектрисы берут по половинке: 0,5α + 0,5β = 0,5 · (α + β) = 0,5 · 180° = 90°." 0,-3.05 size=22 color=teal align=center
+text "Запомни этот чертёж: видишь биссектрисы смежных углов -> сразу ставь прямой угол 90°!" 0,-3.62 size=22 align=center
 pause
 clear
-heading "Финальный чек-лист · Проверь, как работает твоя логика"
-text "1. Почему через две точки нельзя провести две разные прямые?" -7.2,2.3 size=24
-text "2. Угол равен 135°. Какой он (острый, прямой, тупой) и чему равен смежный с ним?" -7.2,1.6 size=24
-text "3. Прямые параллельны. Один угол = 40°. Чему равен односторонний с ним?" -7.2,0.9 size=24
-text "4. В треугольнике два угла 50° и 60°. Чему равен третий и какой это треугольник?" -7.2,0.2 size=24
-text "5. В прямоугольном треугольнике катет против 30° равен 8 см. Чему равна гипотенуза?" -7.2,-0.5 size=24
+heading "14. ПРАКТИКА 2.2 · Смежные углы (Уравнения, проценты, доли)"
+text "Задача 1. Один из смежных углов в 4 раза меньше другого. Найти оба угла." -7.4,2.45 size=24
 pause
-box -7.4,-3.9 7.4,-1.4 color=yellow
-text "Ответы для самопроверки:" -7.1,-1.8 size=25 color=yellow
-text "1. Одна точка фиксирует место, вторая — жёстко задаёт направление (линия не гнётся)." -7.1,-2.35 size=22
-text "2. Тупой (больше 90°); смежный = 180° - 135° = 45°." -7.1,-2.85 size=22 color=teal
-text "3. 180° - 40° = 140° (сумма односторонних при параллельных прямых всегда 180°)." -7.1,-3.35 size=22
-text "4. Третий = 180° - 110° = 70° (остроугольный).    5. 8 * 2 = 16 см." -7.1,-3.78 size=22 color=yellow
+text "Решение: меньший = x, больший = 4x. Вместе они дают 180°:" -7.4,1.85 size=23
+text "x + 4x = 180°   =>   5x = 180°   =>   x = 36° (меньший),   4 · 36° = 144° (больший)." -7.4,1.3 size=24 color=teal
+pause
+text "Задача 2. Разность двух смежных углов равна 46°. Найти эти углы." -7.4,0.35 size=24
+pause
+text "Логика: разность 46° значит, что один больше другого на 46°. Пусть меньший = x, больший = x + 46°." -7.4,-0.25 size=22
+text "x + x + 46° = 180°   =>   2x = 134°   =>   x = 67°,   второй = 67° + 46° = 113°." -7.4,-0.8 size=24 color=yellow
+pause
+text "Задача 3. Один из смежных углов составляет 20% от другого. Найти оба угла." -7.4,-1.75 size=24 color=orange
+pause
+text "Логика: 20% = 0,2 = 1/5. Значит, один угол = x, другой = 0,2x (или x и 5x)." -7.4,-2.35 size=22
+text "x + 5x = 180°   =>   6x = 180°   =>   x = 30°,   второй = 5 · 30° = 150°." -7.4,-2.95 size=24 color=teal
+box -7.4,-3.95 7.4,-3.35 color=yellow
+text "Совет: любые проценты или дроби превращай в отношение целых чисел — считать в разы проще!" 0,-3.65 size=22 color=yellow align=center
+pause
+clear
+heading "15. Вертикальные углы и полная картина пересечения двух прямых"
+box -7.5,1.25 7.5,2.85 color=blue
+text "ОПРЕДЕЛЕНИЕ: Два угла называются вертикальными, если стороны одного являются" 0,2.4 size=24 color=yellow align=center
+text "дополнительными лучами к сторонам другого. (Проще: образуются при пересечении двух прямых)." 0,1.8 size=23 align=center
+line -6.5,-1.5 -1.5,0.7 color=white width=3
+& line -6.5,0.7 -1.5,-1.5 color=white width=3
+angle -4.0,-0.4 -1.5,0.7 -1.5,-1.5 r=0.7 label="1" color=yellow
+& angle -4.0,-0.4 -6.5,0.7 -6.5,-1.5 r=0.7 label="2" color=yellow
+& angle -4.0,-0.4 -6.5,0.7 -1.5,0.7 r=0.5 label="3" color=teal
+& angle -4.0,-0.4 -1.5,-1.5 -6.5,-1.5 r=0.5 label="4" color=teal
+pause
+box -0.5,-2.1 7.5,0.9 color=yellow
+text "Полная модель перекрёстка:" 3.5,0.45 size=25 color=yellow align=center
+text "1. ∠1 = ∠2 (вертикальные)" -0.2,-0.15 size=23 color=yellow
+text "2. ∠3 = ∠4 (вертикальные)" -0.2,-0.7 size=23 color=teal
+text "3. ∠1 + ∠3 = 180° (смежные)" -0.2,-1.25 size=23
+text "4. ∠1 + ∠2 + ∠3 + ∠4 = 360°" -0.2,-1.8 size=23 color=orange
+pause
+box -7.5,-3.95 7.5,-2.45 color=teal
+text "КРИТЕРИЙ В ЗАДАЧАХ: если в условии дана сумма двух углов при пересечении прямых и она НЕ равна 180°" 0,-2.9 size=22 color=teal align=center
+text "(например, сумма равна 100° или 240°), то это ГАРАНТИРОВАННО пара равных вертикальных углов!" 0,-3.45 size=22 color=yellow align=center
+pause
+clear
+heading "16. ПРАКТИКА 2.3 · Задачи повышенной сложности на пересечение прямых"
+text "Задача 1. При пересечении двух прямых сумма двух углов равна 114°. Найти все 4 угла." -7.4,2.45 size=24
+pause
+text "Логика: раз сумма ≠ 180°, это не смежные, а вертикальные углы (они равны!)." -7.4,1.85 size=23 color=teal
+text "114° : 2 = 57° (два острых угла).   Смежные с ними: 180° - 57° = 123° (два тупых угла)." -7.4,1.3 size=23 color=yellow
+pause
+text "Задача 2. При пересечении двух прямых сумма трёх углов равна 290°. Найти все 4 угла." -7.4,0.35 size=24 color=orange
+pause
+text "Гениальный ход (метод дополнения до 360°):" -7.4,-0.25 size=24 color=yellow
+text "1. Мы знаем, что сумма ВСЕХ четырёх углов вокруг точки равна 360°." -7.4,-0.8 size=23
+text "2. Если сумма трёх углов равна 290°, то четвёртый угол равен: 360° - 290° = 70°!" -7.4,-1.35 size=23 color=teal
+text "3. Дальше легко: вертикальный к 70° равен 70°, а два других по 180° - 70° = 110°." -7.4,-1.9 size=23
+pause
+text "Задача 3 (3 прямые в одной точке!). Три прямые пересекаются в точке O. ∠1 = 40°, ∠2 = 65°. Найти ∠3." -7.4,-2.8 size=23 color=blue
+text "Логика: берём три соседних угла, образующих прямую линию (180°): ∠3 = 180° - (40° + 65°) = 75°." -7.4,-3.4 size=23 color=yellow
+pause
+clear
+heading "17. Перпендикулярные прямые, перпендикуляр и наклонная"
+box -7.5,1.1 -0.2,2.85 color=blue
+text "ПЕРПЕНДИКУЛЯРНЫЕ ПРЯМЫЕ:" -7.2,2.4 size=24 color=yellow
+text "Две прямые, пересекающиеся под углом 90°." -7.2,1.88 size=23
+text "Важно: все 4 угла при пересечении равны" -7.2,1.38 size=23
+text "по 90°! Запись:  a ⊥ b." -7.2,0.88 size=24 color=teal
+line -6.5,-1.5 -1.5,-1.5 color=white width=4
+line -4.0,-3.5 -4.0,0.5 color=blue width=4
+rightangle -4.0,-1.5 -1.5,-1.5 -4.0,0.5 size=0.35 color=yellow
+point -4.0,-1.5 label="H" ldx=0.35 ldy=-0.35 color=yellow
+point -4.0,0.3 label="A" ldx=-0.35 ldy=0 color=white
+line -4.0,0.3 -1.8,-1.5 color=orange width=3 dash=1
+point -1.8,-1.5 label="B" ldx=0 ldy=-0.4 color=orange
+pause
+box 0.2,-3.6 7.5,2.85 color=yellow
+text "Словарь геометрических терминов:" 3.85,2.35 size=25 color=yellow align=center
+text "• Точка A — точка вне прямой a." 0.5,1.7 size=23
+text "• Отрезок AH — ПЕРПЕНДИКУЛЯР," 0.5,1.1 size=23 color=blue
+text "  опущенный из точки A на прямую a." 0.5,0.6 size=23
+text "• Точка H — ОСНОВАНИЕ перпендикуляра." 0.5,0.0 size=23 color=yellow
+text "• Отрезок AB — НАКЛОННАЯ к прямой a." 0.5,-0.6 size=23 color=orange
+text "• Отрезок HB — ПРОЕКЦИЯ наклонной." 0.5,-1.2 size=23 color=teal
+text "Главное свойство: перпендикуляр ВСЕГДА" 0.5,-1.95 size=23 color=yellow
+text "короче любой наклонной (AH < AB)," 0.5,-2.45 size=23
+text "поэтому длина AH — это РАССТОЯНИЕ" 0.5,-2.95 size=23 color=teal
+text "от точки A до прямой a!" 0.5,-3.45 size=23 color=teal
+pause
+clear
+heading "18. Теорема о двух прямых, перпендикулярных третьей"
+text "Докажем методом от противного (любимый метод гениев математики!):" 0,2.5 size=24 color=yellow align=center
+text "«Две прямые a и b перпендикулярны третьей прямой c (a ⊥ c и b ⊥ c). Доказать, что a и b не пересекаются.»" 0,1.95 size=22 color=white align=center
+line -6.5,-1.5 -0.5,-1.5 color=white width=4
+line -5.2,-2.8 -5.2,0.8 color=blue width=4
+line -2.0,-2.8 -2.0,0.8 color=teal width=4
+rightangle -5.2,-1.5 -0.5,-1.5 -5.2,0.8 size=0.3 color=yellow
+& rightangle -2.0,-1.5 -0.5,-1.5 -2.0,0.8 size=0.3 color=yellow
+tex "c" -0.3,-1.2 size=28 color=white
+tex "a" -5.5,0.8 size=28 color=blue
+tex "b" -2.3,0.8 size=28 color=teal
+pause
+box 0.3,-3.6 7.5,1.2 color=teal
+text "Логика «От противного»:" 3.9,0.75 size=25 color=teal align=center
+text "1. Предположим обратное: пусть прямые a и b" 0.6,0.1 size=22
+text "   всё-таки пересеклись в некоторой точке M." 0.6,-0.4 size=22
+text "2. Тогда из одной точки M на прямую c" 0.6,-1.0 size=22 color=yellow
+text "   опущены СРАЗУ ДВА перпендикуляра (a и b)!" 0.6,-1.5 size=22 color=yellow
+text "3. Но по аксиоме через точку M можно" 0.6,-2.1 size=22
+text "   провести ТОЛЬКО ОДИН перпендикуляр к c." 0.6,-2.6 size=22
+text "4. Противоречие! Значит, a и b не пересекаются" 0.6,-3.15 size=22 color=orange
+text "   (то есть a ∥ b)!" 0.6,-3.55 size=22 color=orange
+pause
+clear
+heading "19. Большой тренинг по Модулю 1 (5 задач разного типа)"
+text "1. На прямой лежат точки P, Q, R. PQ = 11 см, QR = 19 см, PR = 8 см. Какая точка посередине?" -7.3,2.35 size=22
+text "2. Точка K делит отрезок MN = 56 см в отношении 3 : 4. Найти расстояние между серединами MK и KN." -7.3,1.65 size=22
+text "3. Разность двух смежных углов равна 32°. Найти меньший из этих углов." -7.3,0.95 size=22
+text "4. При пересечении двух прямых один из углов в 5 раз больше другого. Найти все углы." -7.3,0.25 size=22
+text "5. Луч OC делит угол AOB = 136° на два угла. Найти угол между биссектрисами углов AOC и COB." -7.3,-0.45 size=22
+pause
+box -7.4,-3.95 7.4,-1.2 color=yellow
+text "Подробные ключи и проверка логики:" -7.1,-1.6 size=24 color=yellow
+text "1. Точка P (так как 11 + 8 = 19 -> Q и R по краям)." -7.1,-2.12 size=21
+text "2. 28 см (расстояние между серединами соседних частей всегда равно половине всего отрезка 56 : 2)." -7.1,-2.62 size=21 color=teal
+text "3. 74° (x + x + 32 = 180 -> 2x = 148 -> x = 74°)." -7.1,-3.12 size=21
+text "4. 30°, 150°, 30°, 150° (x + 5x = 180 -> x = 30°).    5. 68° (136° : 2 = 68°)." -7.1,-3.65 size=21 color=yellow
+pause
+clear
+heading "20. Итоги Модуля 1 и подготовка к Модулю 2"
+box -7.5,-2.5 7.5,2.6 color=blue
+text "Что ты теперь умеешь делать строго математически:" 0,2.1 size=27 color=yellow align=center
+text "✓ Отличать аксиомы (стартовые правила) от теорем (логических выводов)." -7.0,1.35 size=23
+text "✓ Определять взаимное расположение точек на прямой без чертежа (по длинам)." -7.0,0.75 size=23
+text "✓ Доказывать свойства середин отрезков и биссектрис углов в общем виде." -7.0,0.15 size=23 color=teal
+text "✓ Использовать свойства смежных, вертикальных углов и метод дополнения до 360°." -7.0,-0.45 size=23
+text "✓ Применять метод доказательства «от противного»." -7.0,-1.05 size=23 color=yellow
+text "Следующий шаг (Модуль 2): Параллельные прямые, секущие, векторный поворот и сложные ломаные." 0,-1.95 size=23 color=orange align=center
